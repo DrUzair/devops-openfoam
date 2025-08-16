@@ -5,6 +5,7 @@ name: OpenFOAM Simulation Pipeline
 permissions:
   contents: read
   packages: write
+  security-events: write
 on:
   push:
     branches: [main, develop, feature/*]
@@ -356,7 +357,7 @@ jobs:
           "
 
       - name: Upload Performance Results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: performance-results-${{ github.sha }}
           path: results/performance/
