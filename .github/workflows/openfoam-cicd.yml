@@ -14,7 +14,6 @@ on:
   pull_request:
     branches: [main, develop]
   schedule:
-    # Run nightly simulation validation
     - cron: '0 2 * * *'
   workflow_dispatch:
     inputs:
@@ -34,7 +33,7 @@ env:
 
 jobs:
   # ============================================================================
-  # BUILD JOB - Container Image Creation & Validation
+  # BUILD JOB
   # ============================================================================
   build:
     name: Build OpenFOAM Container
@@ -42,27 +41,22 @@ jobs:
     outputs:
       image-digest: ${{ steps.build.outputs.digest }}
       image-tag: ${{ steps.meta.outputs.tags }}
-    
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Full history for proper versioning
+          fetch-depth: 0
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+      - uses: docker/setup-buildx-action@v3
         with:
           platforms: linux/amd64,linux/arm64
 
-      - name: Log in to Container Registry
-        uses: docker/login-action@v3
+      - uses: docker/login-action@v3
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Extract Container Metadata
-        id: meta
+      - id: meta
         uses: docker/metadata-action@v5
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
@@ -72,8 +66,7 @@ jobs:
             type=sha,prefix={{branch}}-
             type=raw,value=latest,enable={{is_default_branch}}
 
-      - name: Build and Push Container
-        id: build
+      - id: build
         uses: docker/build-push-action@v5
         with:
           context: ./containers/openfoam
@@ -88,48 +81,40 @@ jobs:
             BUILD_DATE=${{ github.event.head_commit.timestamp }}
             BUILD_VERSION=${{ github.sha }}
 
-      - name: Container Vulnerability Scan
-        uses: aquasecurity/trivy-action@master
+      - uses: aquasecurity/trivy-action@master
         with:
           image-ref: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
           format: 'sarif'
           output: 'trivy-results.sarif'
         continue-on-error: true
 
-      - name: Upload Vulnerability Scan Results
-        uses: github/codeql-action/upload-sarif@v3
+      - uses: github/codeql-action/upload-sarif@v3
         if: always()
         with:
           sarif_file: 'trivy-results.sarif'
 
   # ============================================================================
-  # UNIT TESTS - Fast validation of scripts and configuration
+  # UNIT TESTS
   # ============================================================================
   unit-tests:
     name: Unit Tests & Configuration Validation
     runs-on: ubuntu-latest
     needs: build
-
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      - uses: actions/setup-python@v4
         with:
           python-version: '3.11'
           cache: 'pip'
 
-      - name: Install Python Dependencies
-        run: |
+      - run: |
           pip install pytest pyyaml numpy matplotlib
           pip install -r requirements.txt || echo "No requirements.txt found"
 
-      - name: Validate OpenFOAM Case Files
-        run: |
+      - run: |
           python -c "
-          import os, yaml, sys
-          
+          import os, sys
           def validate_openfoam_case(case_dir):
               required_dirs = ['0', 'constant', 'system']
               required_files = {
@@ -137,36 +122,28 @@ jobs:
                   'system': ['controlDict', 'fvSchemes', 'fvSolution', 'blockMeshDict'],
                   'constant': ['transportProperties']
               }
-              
               for dir_name in required_dirs:
                   dir_path = os.path.join(case_dir, dir_name)
                   if not os.path.exists(dir_path):
                       raise Exception(f'Missing required directory: {dir_path}')
-                  
                   for file_name in required_files.get(dir_name, []):
                       file_path = os.path.join(dir_path, file_name)
                       if not os.path.exists(file_path):
                           raise Exception(f'Missing required file: {file_path}')
-              
               print(f'✅ Case validation passed: {case_dir}')
-          
-          # Validate all case directories
           case_dirs = ['simulations/cavity-flow', 'cavity-flow-case']
           for case_dir in case_dirs:
               if os.path.exists(case_dir):
                   validate_openfoam_case(case_dir)
           "
 
-      - name: Test Python Scripts Syntax
-        run: |
+      - run: |
           python -m py_compile scripts/*.py || echo "No Python scripts to compile"
-          
-      - name: Validate Shell Scripts
-        run: |
+
+      - run: |
           if command -v shellcheck &> /dev/null; then
             shellcheck scripts/*.sh || echo "Shellcheck not available"
           fi
-          # Basic syntax check
           for script in scripts/*.sh; do
             if [ -f "$script" ]; then
               bash -n "$script" && echo "✅ $script syntax OK"
@@ -174,48 +151,41 @@ jobs:
           done
 
   # ============================================================================
-  # INTEGRATION TESTS - Full simulation pipeline testing
+  # INTEGRATION TESTS
   # ============================================================================
   integration-tests:
     name: Integration Tests - Simulation Pipeline
     runs-on: ubuntu-latest
     needs: [build, unit-tests]
     timeout-minutes: 45
-    
     strategy:
       matrix:
         test-case:
           - name: "Quick Validation"
             reynolds: "100"
             iterations: "10"
-            timeout: "300"
+            timeout-minutes: 5
           - name: "Standard Test"
             reynolds: "500,1000"
             iterations: "50"
-            timeout: "900"
-
+            timeout-minutes: 15
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Log in to Container Registry
-        uses: docker/login-action@v3
+      - uses: docker/login-action@v3
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Pull Built Container
-        run: |
-          docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+      - run: docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
 
-      - name: Create Results Directory
-        run: |
+      - run: |
           mkdir -p results/integration-tests/${{ matrix.test-case.name }}
           chmod 777 results/integration-tests/${{ matrix.test-case.name }}
 
-      - name: Run Parametric Study - ${{ matrix.test-case.name }}
-        timeout-minutes: ${{ fromJson(matrix.test-case.timeout) / 60 }}
+      - name: Run Parametric Study
+        timeout-minutes: ${{ matrix.test-case.timeout-minutes }}
         run: |
           docker run --rm \
             -v $PWD/results/integration-tests/${{ matrix.test-case.name }}:/results \
@@ -228,7 +198,6 @@ jobs:
               export RESULTS_DIR=/results
               /scripts/run-parametric-study.sh
             "
-
       - name: Validate Simulation Results
         run: |
           python -c "
