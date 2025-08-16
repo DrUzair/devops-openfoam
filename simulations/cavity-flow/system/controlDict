@@ -7,35 +7,27 @@ FoamFile
     object      controlDict;
 }
 
-application     simpleFoam;
+application     icoFoam;
 
 startFrom       startTime;
 startTime       0;
 stopAt          endTime;
-endTime         1000;
-deltaT          1;
+endTime         10;  // Reduced for testing
+
+deltaT          0.001;  // Extremely small initial time step
 
 writeControl    timeStep;
 writeInterval   100;
 
 purgeWrite      0;
 writeFormat     ascii;
-writePrecision  6;
+writePrecision  12;
 writeCompression off;
 timeFormat      general;
-timePrecision   6;
+timePrecision   12;
 
-runTimeModifiable true;
+runTimeModifiable yes;
 
-// Parametrized for automation
-functions
-{
-    residuals
-    {
-        type    residuals;
-        libs    ("libutilityFunctionObjects.so");
-        fields  (U p);
-        writeControl timeStep;
-        writeInterval 10;
-    }
-}
+adjustTimeStep  yes;
+maxCo           1;  // Very conservative
+maxDeltaT       0.0001;

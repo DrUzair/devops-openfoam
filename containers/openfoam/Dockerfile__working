@@ -1,0 +1,47 @@
+# OpenFOAM Development Container
+FROM openfoam/openfoam9-paraview56:latest
+
+# Set working directory
+WORKDIR /opt/simulation
+
+# Install additional tools for CI/CD pipeline
+USER root
+RUN apt-get update && apt-get install -y \
+    python3 \
+    python3-pip \
+    python3-matplotlib \
+    python3-numpy \
+    python3-pandas \
+    bc \
+    curl \
+    jq \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Python packages for visualization and reporting
+RUN pip3 install \
+    matplotlib \
+    pandas \
+    numpy \
+    seaborn \
+    plotly \
+    jinja2
+
+# Source OpenFOAM environment for all users
+RUN echo "source /opt/openfoam9/etc/bashrc" >> /etc/bash.bashrc
+
+# Switch back to openfoam user
+USER openfoam
+
+# Copy simulation files
+COPY --chown=openfoam:openfoam simulations/ /opt/simulation/cases/
+COPY --chown=openfoam:openfoam scripts/ /opt/simulation/scripts/
+
+# Create results directory
+RUN mkdir -p /opt/simulation/results
+
+# Set environment variables
+ENV WM_PROJECT_USER_DIR="/opt/simulation"
+ENV PATH="/opt/simulation/scripts:$PATH"
+
+# Default command
+CMD ["/bin/bash"]

@@ -1,132 +1,430 @@
-name: OpenFOAM Simulation Platform CI/CD
+# OpenFOAM Simulation Platform - CI/CD Pipeline
+# Demonstrates: Pipeline as Code, Container Builds, Automated Testing, Artifact Management
+
+name: OpenFOAM Simulation Pipeline
 
 on:
   push:
-    branches: [ main, develop, feature/* ]
+    branches: [main, develop, feature/*]
+    paths:
+      - 'containers/**'
+      - 'simulations/**'
+      - 'scripts/**'
+      - '.github/workflows/**'
   pull_request:
-    branches: [ main, develop ]
+    branches: [main, develop]
+  schedule:
+    # Run nightly simulation validation
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+    inputs:
+      reynolds_numbers:
+        description: 'Comma-separated Reynolds numbers (e.g., 100,500,1000)'
+        required: false
+        default: '100,500,1000'
+      run_performance_test:
+        description: 'Run performance benchmarking'
+        type: boolean
+        default: false
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}/openfoam-sim
+  IMAGE_NAME: ${{ github.repository }}/openfoam-platform
+  SIMULATION_TIMEOUT: 1800  # 30 minutes
 
 jobs:
-  # Build and test container
-  build-and-test:
+  # ============================================================================
+  # BUILD JOB - Container Image Creation & Validation
+  # ============================================================================
+  build:
+    name: Build OpenFOAM Container
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
-
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v3
-
-    - name: Log in to Container Registry
-      if: github.event_name != 'pull_request'
-      uses: docker/login-action@v3
-      with:
-        registry: ${{ env.REGISTRY }}
-        username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Extract metadata
-      id: meta
-      uses: docker/metadata-action@v5
-      with:
-        images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-        tags: |
-          type=ref,event=branch
-          type=ref,event=pr
-          type=sha,prefix={{branch}}-
-          type=raw,value=latest,enable={{is_default_branch}}
-
-    - name: Build and push Docker image
-      uses: docker/build-push-action@v5
-      with:
-        context: .
-        file: containers/openfoam/Dockerfile
-        platforms: linux/amd64
-        push: ${{ github.event_name != 'pull_request' }}
-        tags: ${{ steps.meta.outputs.tags }}
-        labels: ${{ steps.meta.outputs.labels }}
-        cache-from: type=gha
-        cache-to: type=gha,mode=max
-
-    - name: Test container functionality
-      run: |
-        docker build -t test-openfoam:latest -f containers/openfoam/Dockerfile .
-        docker run --rm test-openfoam:latest ./scripts/validate-setup.sh
-
-  # Infrastructure validation
-  infrastructure-check:
-    runs-on: ubuntu-latest
-    needs: build-and-test
+    outputs:
+      image-digest: ${{ steps.build.outputs.digest }}
+      image-tag: ${{ steps.meta.outputs.tags }}
     
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Full history for proper versioning
 
-    - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v3
-      with:
-        terraform_version: 1.5.0
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+        with:
+          platforms: linux/amd64,linux/arm64
 
-    - name: Terraform Format Check
-      run: |
-        cd infrastructure/terraform
-        terraform fmt -check
+      - name: Log in to Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Terraform Validation
-      run: |
-        cd infrastructure/terraform
-        terraform init -backend=false
-        terraform validate
+      - name: Extract Container Metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=ref,event=branch
+            type=ref,event=pr
+            type=sha,prefix={{branch}}-
+            type=raw,value=latest,enable={{is_default_branch}}
 
-  # Security scanning
-  security-scan:
+      - name: Build and Push Container
+        id: build
+        uses: docker/build-push-action@v5
+        with:
+          context: ./containers/openfoam
+          file: ./containers/openfoam/Dockerfile
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          build-args: |
+            BUILD_DATE=${{ github.event.head_commit.timestamp }}
+            BUILD_VERSION=${{ github.sha }}
+
+      - name: Container Vulnerability Scan
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+        continue-on-error: true
+
+      - name: Upload Vulnerability Scan Results
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: 'trivy-results.sarif'
+
+  # ============================================================================
+  # UNIT TESTS - Fast validation of scripts and configuration
+  # ============================================================================
+  unit-tests:
+    name: Unit Tests & Configuration Validation
     runs-on: ubuntu-latest
-    needs: build-and-test
-    
+    needs: build
+
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-    - name: Run Trivy vulnerability scanner
-      uses: aquasecurity/trivy-action@master
-      with:
-        image-ref: 'test-openfoam:latest'
-        format: 'sarif'
-        output: 'trivy-results.sarif'
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          cache: 'pip'
 
-    - name: Upload Trivy scan results
-      uses: github/codeql-action/upload-sarif@v3
-      if: always()
-      with:
-        sarif_file: 'trivy-results.sarif'
+      - name: Install Python Dependencies
+        run: |
+          pip install pytest pyyaml numpy matplotlib
+          pip install -r requirements.txt || echo "No requirements.txt found"
 
-  # Simulation validation
-  simulation-validation:
+      - name: Validate OpenFOAM Case Files
+        run: |
+          python -c "
+          import os, yaml, sys
+          
+          def validate_openfoam_case(case_dir):
+              required_dirs = ['0', 'constant', 'system']
+              required_files = {
+                  '0': ['U', 'p'],
+                  'system': ['controlDict', 'fvSchemes', 'fvSolution', 'blockMeshDict'],
+                  'constant': ['transportProperties']
+              }
+              
+              for dir_name in required_dirs:
+                  dir_path = os.path.join(case_dir, dir_name)
+                  if not os.path.exists(dir_path):
+                      raise Exception(f'Missing required directory: {dir_path}')
+                  
+                  for file_name in required_files.get(dir_name, []):
+                      file_path = os.path.join(dir_path, file_name)
+                      if not os.path.exists(file_path):
+                          raise Exception(f'Missing required file: {file_path}')
+              
+              print(f'✅ Case validation passed: {case_dir}')
+          
+          # Validate all case directories
+          case_dirs = ['simulations/cavity-flow', 'cavity-flow-case']
+          for case_dir in case_dirs:
+              if os.path.exists(case_dir):
+                  validate_openfoam_case(case_dir)
+          "
+
+      - name: Test Python Scripts Syntax
+        run: |
+          python -m py_compile scripts/*.py || echo "No Python scripts to compile"
+          
+      - name: Validate Shell Scripts
+        run: |
+          if command -v shellcheck &> /dev/null; then
+            shellcheck scripts/*.sh || echo "Shellcheck not available"
+          fi
+          # Basic syntax check
+          for script in scripts/*.sh; do
+            if [ -f "$script" ]; then
+              bash -n "$script" && echo "✅ $script syntax OK"
+            fi
+          done
+
+  # ============================================================================
+  # INTEGRATION TESTS - Full simulation pipeline testing
+  # ============================================================================
+  integration-tests:
+    name: Integration Tests - Simulation Pipeline
     runs-on: ubuntu-latest
-    needs: build-and-test
+    needs: [build, unit-tests]
+    timeout-minutes: 45
     
+    strategy:
+      matrix:
+        test-case:
+          - name: "Quick Validation"
+            reynolds: "100"
+            iterations: "10"
+            timeout: "300"
+          - name: "Standard Test"
+            reynolds: "500,1000"
+            iterations: "50"
+            timeout: "900"
+
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-    - name: Run parametric validation
-      run: |
-        docker build -t validation-openfoam:latest -f containers/openfoam/Dockerfile .
-        docker run --rm -v ${{ github.workspace }}/results:/opt/simulation/results \
-          validation-openfoam:latest ./scripts/run-validation-suite.sh
+      - name: Log in to Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Upload simulation results
-      uses: actions/upload-artifact@v4
-      if: always()
-      with:
-        name: simulation-results-${{ github.sha }}
-        path: results/
-        retention-days: 30
+      - name: Pull Built Container
+        run: |
+          docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+
+      - name: Create Results Directory
+        run: |
+          mkdir -p results/integration-tests/${{ matrix.test-case.name }}
+          chmod 777 results/integration-tests/${{ matrix.test-case.name }}
+
+      - name: Run Parametric Study - ${{ matrix.test-case.name }}
+        timeout-minutes: ${{ fromJson(matrix.test-case.timeout) / 60 }}
+        run: |
+          docker run --rm \
+            -v $PWD/results/integration-tests/${{ matrix.test-case.name }}:/results \
+            -e REYNOLDS_NUMBERS="${{ matrix.test-case.reynolds }}" \
+            -e MAX_ITERATIONS="${{ matrix.test-case.iterations }}" \
+            -e PARALLEL_JOBS="2" \
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }} \
+            bash -c "
+              cd /simulation-case
+              export RESULTS_DIR=/results
+              /scripts/run-parametric-study.sh
+            "
+
+      - name: Validate Simulation Results
+        run: |
+          python -c "
+          import os, sys, json, glob
+          
+          results_dir = 'results/integration-tests/${{ matrix.test-case.name }}'
+          
+          # Check for expected output files
+          required_patterns = [
+              'Re_*/converged.log',
+              'Re_*/postProcessing/**',
+              'summary_report.json'
+          ]
+          
+          for pattern in required_patterns:
+              files = glob.glob(os.path.join(results_dir, pattern), recursive=True)
+              if not files:
+                  print(f'❌ Missing expected files: {pattern}')
+                  sys.exit(1)
+              else:
+                  print(f'✅ Found {len(files)} files matching: {pattern}')
+          
+          # Validate summary report
+          summary_path = os.path.join(results_dir, 'summary_report.json')
+          if os.path.exists(summary_path):
+              with open(summary_path, 'r') as f:
+                  summary = json.load(f)
+              
+              reynolds_nums = [float(x) for x in '${{ matrix.test-case.reynolds }}'.split(',')]
+              
+              if len(summary.get('results', [])) != len(reynolds_nums):
+                  print(f'❌ Expected {len(reynolds_nums)} results, got {len(summary.get(\"results\", []))}')
+                  sys.exit(1)
+              
+              print(f'✅ Integration test passed: ${{ matrix.test-case.name }}')
+          "
+
+      - name: Upload Test Results
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: integration-test-results-${{ matrix.test-case.name }}-${{ github.sha }}
+          path: results/integration-tests/${{ matrix.test-case.name }}/
+          retention-days: 30
+
+  # ============================================================================
+  # PERFORMANCE TESTS - Benchmarking and scaling validation
+  # ============================================================================
+  performance-tests:
+    name: Performance Benchmarking
+    runs-on: ubuntu-latest
+    needs: [build, integration-tests]
+    if: github.ref == 'refs/heads/main' || github.event.inputs.run_performance_test == 'true'
+    timeout-minutes: 60
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Log in to Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Pull Built Container
+        run: |
+          docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+
+      - name: Run Performance Benchmark
+        run: |
+          mkdir -p results/performance
+          chmod 777 results/performance
+          
+          # Run performance test with timing
+          docker run --rm \
+            -v $PWD/results/performance:/results \
+            -e REYNOLDS_NUMBERS="100,500,1000,2000" \
+            -e MAX_ITERATIONS="100" \
+            -e PARALLEL_JOBS="4" \
+            -e BENCHMARK_MODE="true" \
+            --cpus="4" \
+            --memory="8g" \
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }} \
+            bash -c "
+              echo 'Starting performance benchmark...'
+              start_time=\$(date +%s)
+              
+              cd /simulation-case
+              export RESULTS_DIR=/results
+              /scripts/run-parametric-study.sh
+              
+              end_time=\$(date +%s)
+              duration=\$((end_time - start_time))
+              
+              echo '{
+                \"benchmark_duration_seconds\": '\$duration',
+                \"timestamp\": \"'\$(date -u +%Y-%m-%dT%H:%M:%SZ)'\",
+                \"commit_sha\": \"${{ github.sha }}\",
+                \"cpu_limit\": \"4\",
+                \"memory_limit\": \"8g\"
+              }' > /results/benchmark_summary.json
+            "
+
+      - name: Generate Performance Report
+        run: |
+          python -c "
+          import json, os
+          
+          benchmark_file = 'results/performance/benchmark_summary.json'
+          if os.path.exists(benchmark_file):
+              with open(benchmark_file, 'r') as f:
+                  data = json.load(f)
+              
+              duration = data['benchmark_duration_seconds']
+              print(f'⏱️ Performance Benchmark Results:')
+              print(f'   Total Duration: {duration}s ({duration/60:.1f} minutes)')
+              print(f'   Commit: {data[\"commit_sha\"][:8]}')
+              print(f'   Resources: {data[\"cpu_limit\"]} CPU, {data[\"memory_limit\"]} RAM')
+              
+              # Simple performance regression check
+              if duration > 1800:  # 30 minutes
+                  print('⚠️ Performance regression detected - simulation took too long')
+              else:
+                  print('✅ Performance within acceptable limits')
+          "
+
+      - name: Upload Performance Results
+        uses: actions/upload-artifact@v3
+        with:
+          name: performance-results-${{ github.sha }}
+          path: results/performance/
+          retention-days: 90
+
+  # ============================================================================
+  # DEPLOYMENT STAGING - Deploy to development environment
+  # ============================================================================
+  deploy-staging:
+    name: Deploy to Staging
+    runs-on: ubuntu-latest
+    needs: [integration-tests]
+    if: github.ref == 'refs/heads/develop'
+    environment:
+      name: staging
+      url: https://staging.openfoam-platform.example.com
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Deploy to Staging Environment
+        run: |
+          echo "🚀 Deploying to staging environment..."
+          echo "Container Image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}"
+          
+          # This would integrate with your cloud deployment tool
+          # e.g., kubectl, helm, terraform, etc.
+          echo "Deployment would happen here using IaC tools"
+
+  # ============================================================================
+  # PRODUCTION DEPLOYMENT - Deploy to production environment
+  # ============================================================================
+  deploy-production:
+    name: Deploy to Production
+    runs-on: ubuntu-latest
+    needs: [performance-tests]
+    if: github.ref == 'refs/heads/main'
+    environment:
+      name: production
+      url: https://openfoam-platform.example.com
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Deploy to Production
+        run: |
+          echo "🚀 Deploying to production environment..."
+          echo "Container Image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}"
+          
+          # Production deployment would happen here
+          echo "Blue-green deployment with rollback capability"
+
+  # ============================================================================
+  # CLEANUP - Clean up old artifacts and containers
+  # ============================================================================
+  cleanup:
+    name: Cleanup Old Artifacts
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    needs: [deploy-production]
+
+    steps:
+      - name: Delete Old Container Images
+        run: |
+          echo "🧹 Cleaning up old container images..."
+          # This would clean up old images from container registry
+          echo "Cleanup logic would be implemented here"

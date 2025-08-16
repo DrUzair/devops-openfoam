@@ -1,0 +1,1295 @@
+2025-08-15 19:23:21 - Starting OpenFOAM parametric study
+2025-08-15 19:23:21 - Workspace: /workspace
+2025-08-15 19:23:21 - Base case: /workspace/cavity-flow-case
+2025-08-15 19:23:22 - ✓ Base case verified: /workspace/cavity-flow-case
+2025-08-15 19:23:22 - Starting parametric study execution
+2025-08-15 19:23:22 - Testing Reynolds numbers: 100 200 500 1000
+2025-08-15 19:23:22 - === Processing Reynolds number: 100 ===
+2025-08-15 19:23:22 - Copying base case to /workspace/runs/cavity_Re_100
+2025-08-15 19:23:22 - Working in: /workspace/runs/cavity_Re_100
+2025-08-15 19:23:22 - Case contents:
+2025-08-15 19:23:22 - Setting Reynolds number to 100
+2025-08-15 19:23:22 - Calculated kinematic viscosity: .01000000
+2025-08-15 19:23:22 - ✓ Updated transportProperties
+2025-08-15 19:23:22 - New nu line: nu              [0 2 -1 0 0 0 0] .01000000; 0.01;
+2025-08-15 19:23:22 - Starting blockMesh for Re=100
+2025-08-15 19:23:22 - ✓ blockMesh completed successfully
+2025-08-15 19:23:22 - Running icoFoam solver for Re=100
+2025-08-15 19:23:22 - ✓ icoFoam completed in 0 seconds
+2025-08-15 19:23:22 - SUCCESS: Valid results for Re=100, final time=0.5
+2025-08-15 19:23:22 - ✓ Case Re=100 completed successfully
+2025-08-15 19:23:22 - Recorded: Re=100, Status=SUCCESS
+2025-08-15 19:23:22 - === Completed Re=100 ===
+2025-08-15 19:23:22 - === Processing Reynolds number: 200 ===
+2025-08-15 19:23:22 - Copying base case to /workspace/runs/cavity_Re_200
+2025-08-15 19:23:22 - Working in: /workspace/runs/cavity_Re_200
+2025-08-15 19:23:22 - Case contents:
+2025-08-15 19:23:22 - Setting Reynolds number to 200
+2025-08-15 19:23:22 - Calculated kinematic viscosity: .00500000
+2025-08-15 19:23:22 - ✓ Updated transportProperties
+2025-08-15 19:23:22 - New nu line: nu              [0 2 -1 0 0 0 0] .00500000; 0.01;
+2025-08-15 19:23:22 - Starting blockMesh for Re=200
+2025-08-15 19:23:22 - ✓ blockMesh completed successfully
+2025-08-15 19:23:22 - Running icoFoam solver for Re=200
+2025-08-15 19:23:22 - ✓ icoFoam completed in 0 seconds
+2025-08-15 19:23:22 - SUCCESS: Valid results for Re=200, final time=0.5
+2025-08-15 19:23:22 - ✓ Case Re=200 completed successfully
+2025-08-15 19:23:22 - Recorded: Re=200, Status=SUCCESS
+2025-08-15 19:23:22 - === Completed Re=200 ===
+2025-08-15 19:23:22 - === Processing Reynolds number: 500 ===
+2025-08-15 19:23:22 - Copying base case to /workspace/runs/cavity_Re_500
+2025-08-15 19:23:22 - Working in: /workspace/runs/cavity_Re_500
+2025-08-15 19:23:22 - Case contents:
+2025-08-15 19:23:22 - Setting Reynolds number to 500
+2025-08-15 19:23:22 - Calculated kinematic viscosity: .00200000
+2025-08-15 19:23:22 - ✓ Updated transportProperties
+2025-08-15 19:23:22 - New nu line: nu              [0 2 -1 0 0 0 0] .00200000; 0.01;
+2025-08-15 19:23:22 - Starting blockMesh for Re=500
+2025-08-15 19:23:22 - ✓ blockMesh completed successfully
+2025-08-15 19:23:22 - Running icoFoam solver for Re=500
+2025-08-15 19:23:23 - ✓ icoFoam completed in 1 seconds
+2025-08-15 19:23:23 - SUCCESS: Valid results for Re=500, final time=0.5
+2025-08-15 19:23:23 - ✓ Case Re=500 completed successfully
+2025-08-15 19:23:23 - Recorded: Re=500, Status=SUCCESS
+2025-08-15 19:23:23 - === Completed Re=500 ===
+2025-08-15 19:23:23 - === Processing Reynolds number: 1000 ===
+2025-08-15 19:23:23 - Copying base case to /workspace/runs/cavity_Re_1000
+2025-08-15 19:23:23 - Working in: /workspace/runs/cavity_Re_1000
+2025-08-15 19:23:23 - Case contents:
+2025-08-15 19:23:23 - Setting Reynolds number to 1000
+2025-08-15 19:23:23 - Calculated kinematic viscosity: .00100000
+2025-08-15 19:23:23 - ✓ Updated transportProperties
+2025-08-15 19:23:23 - New nu line: nu              [0 2 -1 0 0 0 0] .00100000; 0.01;
+2025-08-15 19:23:23 - Starting blockMesh for Re=1000
+2025-08-15 19:23:23 - ✓ blockMesh completed successfully
+2025-08-15 19:23:23 - Running icoFoam solver for Re=1000
+2025-08-15 19:23:23 - ✓ icoFoam completed in 0 seconds
+2025-08-15 19:23:23 - SUCCESS: Valid results for Re=1000, final time=0.5
+2025-08-15 19:23:23 - ✓ Case Re=1000 completed successfully
+2025-08-15 19:23:23 - Recorded: Re=1000, Status=SUCCESS
+2025-08-15 19:23:23 - === Completed Re=1000 ===
+2025-08-15 19:23:23 - === PARAMETRIC STUDY COMPLETED ===
+2025-08-15 19:23:23 - Total cases: 4
+2025-08-15 19:23:23 - Successful cases: 4
+2025-08-15 19:23:23 - Success rate: 100.0%
+2025-08-15 19:23:23 - Results summary:
+2025-08-15 19:23:23 - Case directories created:
+2025-08-15 19:23:23 - Detailed log: /workspace/runs/parametric-study.log
+2025-08-15 19:23:23 - === STUDY FINISHED SUCCESSFULLY ===
+2025-08-15 19:23:42 - Starting OpenFOAM parametric study
+2025-08-15 19:23:42 - Workspace: /workspace
+2025-08-15 19:23:42 - Base case: /workspace/cavity-flow-case
+2025-08-15 19:23:42 - ✓ Base case verified: /workspace/cavity-flow-case
+2025-08-15 19:23:42 - Starting parametric study execution
+2025-08-15 19:23:42 - Testing Reynolds numbers: 100 200 500 1000
+2025-08-15 19:23:42 - === Processing Reynolds number: 100 ===
+2025-08-15 19:23:42 - Removing existing case: /workspace/runs/cavity_Re_100
+2025-08-15 19:23:42 - Copying base case to /workspace/runs/cavity_Re_100
+2025-08-15 19:23:42 - Working in: /workspace/runs/cavity_Re_100
+2025-08-15 19:23:42 - Case contents:
+2025-08-15 19:23:42 - Setting Reynolds number to 100
+2025-08-15 19:23:42 - DEBUG: transportProperties nu content:
+2025-08-15 19:23:42 - Setting Reynolds number to 100
+2025-08-15 19:23:42 - Calculated kinematic viscosity: .01000000
+2025-08-15 19:23:42 - Setting Reynolds number to 100
+2025-08-15 19:23:42 - Calculated kinematic viscosity: .0100000000
+2025-08-15 19:23:42 - Transport properties file content:
+2025-08-15 19:23:42 - Starting blockMesh for Re=100
+2025-08-15 19:23:42 - ✓ blockMesh completed successfully
+2025-08-15 19:23:42 - Running icoFoam solver for Re=100
+2025-08-15 19:23:42 - ✓ icoFoam completed in 0 seconds
+2025-08-15 19:23:42 - SUCCESS: Valid results for Re=100, final time=0.5
+2025-08-15 19:23:42 - ✓ Case Re=100 completed successfully
+2025-08-15 19:23:42 - Recorded: Re=100, Status=SUCCESS
+2025-08-15 19:23:42 - === Completed Re=100 ===
+2025-08-15 19:23:42 - === Processing Reynolds number: 200 ===
+2025-08-15 19:23:42 - Removing existing case: /workspace/runs/cavity_Re_200
+2025-08-15 19:23:42 - Copying base case to /workspace/runs/cavity_Re_200
+2025-08-15 19:23:42 - Working in: /workspace/runs/cavity_Re_200
+2025-08-15 19:23:42 - Case contents:
+2025-08-15 19:23:42 - Setting Reynolds number to 200
+2025-08-15 19:23:42 - DEBUG: transportProperties nu content:
+2025-08-15 19:23:42 - Setting Reynolds number to 200
+2025-08-15 19:23:42 - Calculated kinematic viscosity: .00500000
+2025-08-15 19:23:42 - Setting Reynolds number to 200
+2025-08-15 19:23:42 - Calculated kinematic viscosity: .0050000000
+2025-08-15 19:23:42 - Transport properties file content:
+2025-08-15 19:23:42 - Starting blockMesh for Re=200
+2025-08-15 19:23:43 - ✓ blockMesh completed successfully
+2025-08-15 19:23:43 - Running icoFoam solver for Re=200
+2025-08-15 19:23:43 - ✓ icoFoam completed in 1 seconds
+2025-08-15 19:23:43 - SUCCESS: Valid results for Re=200, final time=0.5
+2025-08-15 19:23:43 - ✓ Case Re=200 completed successfully
+2025-08-15 19:23:43 - Recorded: Re=200, Status=SUCCESS
+2025-08-15 19:23:43 - === Completed Re=200 ===
+2025-08-15 19:23:43 - === Processing Reynolds number: 500 ===
+2025-08-15 19:23:43 - Removing existing case: /workspace/runs/cavity_Re_500
+2025-08-15 19:23:43 - Copying base case to /workspace/runs/cavity_Re_500
+2025-08-15 19:23:43 - Working in: /workspace/runs/cavity_Re_500
+2025-08-15 19:23:43 - Case contents:
+2025-08-15 19:23:43 - Setting Reynolds number to 500
+2025-08-15 19:23:43 - DEBUG: transportProperties nu content:
+2025-08-15 19:23:43 - Setting Reynolds number to 500
+2025-08-15 19:23:43 - Calculated kinematic viscosity: .00200000
+2025-08-15 19:23:43 - Setting Reynolds number to 500
+2025-08-15 19:23:43 - Calculated kinematic viscosity: .0020000000
+2025-08-15 19:23:43 - Transport properties file content:
+2025-08-15 19:23:43 - Starting blockMesh for Re=500
+2025-08-15 19:23:43 - ✓ blockMesh completed successfully
+2025-08-15 19:23:43 - Running icoFoam solver for Re=500
+2025-08-15 19:23:43 - ✓ icoFoam completed in 0 seconds
+2025-08-15 19:23:43 - SUCCESS: Valid results for Re=500, final time=0.5
+2025-08-15 19:23:43 - ✓ Case Re=500 completed successfully
+2025-08-15 19:23:43 - Recorded: Re=500, Status=SUCCESS
+2025-08-15 19:23:43 - === Completed Re=500 ===
+2025-08-15 19:23:43 - === Processing Reynolds number: 1000 ===
+2025-08-15 19:23:43 - Removing existing case: /workspace/runs/cavity_Re_1000
+2025-08-15 19:23:43 - Copying base case to /workspace/runs/cavity_Re_1000
+2025-08-15 19:23:43 - Working in: /workspace/runs/cavity_Re_1000
+2025-08-15 19:23:43 - Case contents:
+2025-08-15 19:23:43 - Setting Reynolds number to 1000
+2025-08-15 19:23:43 - DEBUG: transportProperties nu content:
+2025-08-15 19:23:43 - Setting Reynolds number to 1000
+2025-08-15 19:23:43 - Calculated kinematic viscosity: .00100000
+2025-08-15 19:23:43 - Setting Reynolds number to 1000
+2025-08-15 19:23:43 - Calculated kinematic viscosity: .0010000000
+2025-08-15 19:23:43 - Transport properties file content:
+2025-08-15 19:23:43 - Starting blockMesh for Re=1000
+2025-08-15 19:23:43 - ✓ blockMesh completed successfully
+2025-08-15 19:23:43 - Running icoFoam solver for Re=1000
+2025-08-15 19:23:43 - ✓ icoFoam completed in 0 seconds
+2025-08-15 19:23:43 - SUCCESS: Valid results for Re=1000, final time=0.5
+2025-08-15 19:23:43 - ✓ Case Re=1000 completed successfully
+2025-08-15 19:23:43 - Recorded: Re=1000, Status=SUCCESS
+2025-08-15 19:23:44 - === Completed Re=1000 ===
+2025-08-15 19:23:44 - === PARAMETRIC STUDY COMPLETED ===
+2025-08-15 19:23:44 - Total cases: 4
+2025-08-15 19:23:44 - Successful cases: 4
+2025-08-15 19:23:44 - Success rate: 100.0%
+2025-08-15 19:23:44 - Results summary:
+2025-08-15 19:23:44 - Case directories created:
+2025-08-15 19:23:44 - Detailed log: /workspace/runs/parametric-study.log
+2025-08-15 19:23:44 - === STUDY FINISHED SUCCESSFULLY ===
+2025-08-15 19:46:58 - Starting OpenFOAM parametric study
+2025-08-15 19:46:58 - Workspace: /workspace
+2025-08-15 19:46:58 - Base case: /workspace/cavity-flow-case
+2025-08-15 19:48:32 - Starting OpenFOAM parametric study
+2025-08-15 19:48:32 - Workspace: /workspace
+2025-08-15 19:48:32 - Base case: /workspace/cavity-flow-case
+2025-08-15 19:48:32 - ✓ Base case verified: /workspace/cavity-flow-case
+2025-08-15 19:56:51 - Starting OpenFOAM parametric study
+2025-08-15 19:56:51 - Workspace: /workspace
+2025-08-15 19:56:51 - Base case: /workspace/cavity-flow-case
+2025-08-15 19:56:51 - ✓ Base case verified: /workspace/cavity-flow-case
+2025-08-15 19:56:51 - Starting parametric study execution
+2025-08-15 19:56:51 - Testing Reynolds numbers: 100 200 500 1000
+2025-08-15 19:56:51 - === Processing Reynolds number: 100 ===
+2025-08-15 19:56:51 - Removing existing case: /workspace/runs/cavity_Re_100
+2025-08-15 19:56:51 - Copying base case to /workspace/runs/cavity_Re_100
+2025-08-15 19:56:51 - Working in: /workspace/runs/cavity_Re_100
+2025-08-15 19:56:51 - Case contents:
+2025-08-15 19:56:51 - Setting Reynolds number to 100
+2025-08-15 19:56:51 - Calculated kinematic viscosity: .01000000
+2025-08-15 19:56:51 - ✓ Updated transportProperties
+2025-08-15 19:56:51 - New nu line: nu              [0 2 -1 0 0 0 0] .01000000; 0.01;
+2025-08-15 19:56:51 - Starting blockMesh for Re=100
+2025-08-15 19:56:52 - ✓ blockMesh completed successfully
+2025-08-15 19:56:52 - Running icoFoam solver for Re=100
+2025-08-15 19:56:52 - ✓ icoFoam completed in 1 seconds
+2025-08-15 19:56:52 - SUCCESS: Valid results for Re=100, final time=0.5
+2025-08-15 19:56:52 - ✓ Case Re=100 completed successfully
+2025-08-15 19:56:52 - Recorded: Re=100, Status=SUCCESS
+2025-08-15 19:56:52 - === Completed Re=100 ===
+2025-08-15 19:56:52 - === Processing Reynolds number: 200 ===
+2025-08-15 19:56:52 - Removing existing case: /workspace/runs/cavity_Re_200
+2025-08-15 19:56:52 - Copying base case to /workspace/runs/cavity_Re_200
+2025-08-15 19:56:52 - Working in: /workspace/runs/cavity_Re_200
+2025-08-15 19:56:52 - Case contents:
+2025-08-15 19:56:52 - Setting Reynolds number to 200
+2025-08-15 19:56:52 - Calculated kinematic viscosity: .00500000
+2025-08-15 19:56:52 - ✓ Updated transportProperties
+2025-08-15 19:56:52 - New nu line: nu              [0 2 -1 0 0 0 0] .00500000; 0.01;
+2025-08-15 19:56:52 - Starting blockMesh for Re=200
+2025-08-15 19:56:52 - ✓ blockMesh completed successfully
+2025-08-15 19:56:52 - Running icoFoam solver for Re=200
+2025-08-15 19:56:52 - ✓ icoFoam completed in 0 seconds
+2025-08-15 19:56:52 - SUCCESS: Valid results for Re=200, final time=0.5
+2025-08-15 19:56:52 - ✓ Case Re=200 completed successfully
+2025-08-15 19:56:52 - Recorded: Re=200, Status=SUCCESS
+2025-08-15 19:56:52 - === Completed Re=200 ===
+2025-08-15 19:56:52 - === Processing Reynolds number: 500 ===
+2025-08-15 19:56:52 - Removing existing case: /workspace/runs/cavity_Re_500
+2025-08-15 19:56:52 - Copying base case to /workspace/runs/cavity_Re_500
+2025-08-15 19:56:52 - Working in: /workspace/runs/cavity_Re_500
+2025-08-15 19:56:52 - Case contents:
+2025-08-15 19:56:52 - Setting Reynolds number to 500
+2025-08-15 19:56:52 - Calculated kinematic viscosity: .00200000
+2025-08-15 19:56:52 - ✓ Updated transportProperties
+2025-08-15 19:56:52 - New nu line: nu              [0 2 -1 0 0 0 0] .00200000; 0.01;
+2025-08-15 19:56:52 - Starting blockMesh for Re=500
+2025-08-15 19:56:52 - ✓ blockMesh completed successfully
+2025-08-15 19:56:52 - Running icoFoam solver for Re=500
+2025-08-15 19:56:52 - ✓ icoFoam completed in 0 seconds
+2025-08-15 19:56:52 - SUCCESS: Valid results for Re=500, final time=0.5
+2025-08-15 19:56:52 - ✓ Case Re=500 completed successfully
+2025-08-15 19:56:52 - Recorded: Re=500, Status=SUCCESS
+2025-08-15 19:56:52 - === Completed Re=500 ===
+2025-08-15 19:56:52 - === Processing Reynolds number: 1000 ===
+2025-08-15 19:56:52 - Removing existing case: /workspace/runs/cavity_Re_1000
+2025-08-15 19:56:52 - Copying base case to /workspace/runs/cavity_Re_1000
+2025-08-15 19:56:52 - Working in: /workspace/runs/cavity_Re_1000
+2025-08-15 19:56:52 - Case contents:
+2025-08-15 19:56:52 - Setting Reynolds number to 1000
+2025-08-15 19:56:52 - Calculated kinematic viscosity: .00100000
+2025-08-15 19:56:52 - ✓ Updated transportProperties
+2025-08-15 19:56:52 - New nu line: nu              [0 2 -1 0 0 0 0] .00100000; 0.01;
+2025-08-15 19:56:52 - Starting blockMesh for Re=1000
+2025-08-15 19:56:53 - ✓ blockMesh completed successfully
+2025-08-15 19:56:53 - Running icoFoam solver for Re=1000
+2025-08-15 19:56:53 - ✓ icoFoam completed in 1 seconds
+2025-08-15 19:56:53 - SUCCESS: Valid results for Re=1000, final time=0.5
+2025-08-15 19:56:53 - ✓ Case Re=1000 completed successfully
+2025-08-15 19:56:53 - Recorded: Re=1000, Status=SUCCESS
+2025-08-15 19:56:53 - === Completed Re=1000 ===
+2025-08-15 19:56:53 - === PARAMETRIC STUDY COMPLETED ===
+2025-08-15 19:56:53 - Total cases: 4
+2025-08-15 19:56:53 - Successful cases: 4
+2025-08-15 19:56:53 - Success rate: 100.0%
+2025-08-15 19:56:53 - Results summary:
+2025-08-15 19:56:53 - Case directories created:
+2025-08-15 19:56:53 - Detailed log: /workspace/runs/parametric-study.log
+2025-08-15 19:56:53 - === STUDY FINISHED SUCCESSFULLY ===
+2025-08-15 20:16:09 - Starting OpenFOAM parametric study
+2025-08-15 20:16:09 - Workspace: /workspace
+2025-08-15 20:16:09 - Base case: /workspace/cavity-flow-case
+2025-08-15 20:16:09 - ✓ Base case verified: /workspace/cavity-flow-case
+2025-08-15 20:16:09 - Starting parametric study execution
+2025-08-15 20:16:09 - Testing Reynolds numbers: 100 200 500 1000
+2025-08-15 20:16:09 - === Processing Reynolds number: 100 ===
+2025-08-15 20:16:09 - Removing existing case: /workspace/runs/cavity_Re_100
+2025-08-15 20:16:09 - Copying base case to /workspace/runs/cavity_Re_100
+2025-08-15 20:16:09 - Working in: /workspace/runs/cavity_Re_100
+2025-08-15 20:16:09 - Case contents:
+2025-08-15 20:16:09 - Setting Reynolds number to 100
+2025-08-15 20:16:09 - DEBUG: transportProperties nu content:
+2025-08-15 20:16:09 - Setting Reynolds number to 100
+2025-08-15 20:16:09 - Calculated kinematic viscosity: .01000000
+2025-08-15 20:16:09 - Setting Reynolds number to 100
+2025-08-15 20:16:09 - Calculated kinematic viscosity: .0100000000
+2025-08-15 20:16:09 - Transport properties file content:
+2025-08-15 20:16:09 - Starting blockMesh for Re=100
+2025-08-15 20:16:09 - ✓ blockMesh completed successfully
+2025-08-15 20:16:09 - Running icoFoam solver for Re=100
+2025-08-15 20:16:09 - ✓ icoFoam completed in 0 seconds
+2025-08-15 20:16:09 - SUCCESS: Valid results for Re=100, final time=0.5
+2025-08-15 20:16:09 - ✓ Case Re=100 completed successfully
+2025-08-15 20:16:09 - Recorded: Re=100, Status=SUCCESS
+2025-08-15 20:16:09 - === Completed Re=100 ===
+2025-08-15 20:16:09 - === Processing Reynolds number: 200 ===
+2025-08-15 20:16:09 - Removing existing case: /workspace/runs/cavity_Re_200
+2025-08-15 20:16:09 - Copying base case to /workspace/runs/cavity_Re_200
+2025-08-15 20:16:09 - Working in: /workspace/runs/cavity_Re_200
+2025-08-15 20:16:09 - Case contents:
+2025-08-15 20:16:09 - Setting Reynolds number to 200
+2025-08-15 20:16:10 - DEBUG: transportProperties nu content:
+2025-08-15 20:16:10 - Setting Reynolds number to 200
+2025-08-15 20:16:10 - Calculated kinematic viscosity: .00500000
+2025-08-15 20:16:10 - Setting Reynolds number to 200
+2025-08-15 20:16:10 - Calculated kinematic viscosity: .0050000000
+2025-08-15 20:16:10 - Transport properties file content:
+2025-08-15 20:16:10 - Starting blockMesh for Re=200
+2025-08-15 20:16:10 - ✓ blockMesh completed successfully
+2025-08-15 20:16:10 - Running icoFoam solver for Re=200
+2025-08-15 20:16:10 - ✓ icoFoam completed in 0 seconds
+2025-08-15 20:16:10 - SUCCESS: Valid results for Re=200, final time=0.5
+2025-08-15 20:16:10 - ✓ Case Re=200 completed successfully
+2025-08-15 20:16:10 - Recorded: Re=200, Status=SUCCESS
+2025-08-15 20:16:10 - === Completed Re=200 ===
+2025-08-15 20:16:10 - === Processing Reynolds number: 500 ===
+2025-08-15 20:16:10 - Removing existing case: /workspace/runs/cavity_Re_500
+2025-08-15 20:16:10 - Copying base case to /workspace/runs/cavity_Re_500
+2025-08-15 20:16:10 - Working in: /workspace/runs/cavity_Re_500
+2025-08-15 20:16:10 - Case contents:
+2025-08-15 20:16:10 - Setting Reynolds number to 500
+2025-08-15 20:16:10 - DEBUG: transportProperties nu content:
+2025-08-15 20:16:10 - Setting Reynolds number to 500
+2025-08-15 20:16:10 - Calculated kinematic viscosity: .00200000
+2025-08-15 20:16:10 - Setting Reynolds number to 500
+2025-08-15 20:16:10 - Calculated kinematic viscosity: .0020000000
+2025-08-15 20:16:10 - Transport properties file content:
+2025-08-15 20:16:10 - Starting blockMesh for Re=500
+2025-08-15 20:16:10 - ✓ blockMesh completed successfully
+2025-08-15 20:16:10 - Running icoFoam solver for Re=500
+2025-08-15 20:16:10 - ✓ icoFoam completed in 0 seconds
+2025-08-15 20:16:10 - SUCCESS: Valid results for Re=500, final time=0.5
+2025-08-15 20:16:10 - ✓ Case Re=500 completed successfully
+2025-08-15 20:16:10 - Recorded: Re=500, Status=SUCCESS
+2025-08-15 20:16:10 - === Completed Re=500 ===
+2025-08-15 20:16:10 - === Processing Reynolds number: 1000 ===
+2025-08-15 20:16:10 - Removing existing case: /workspace/runs/cavity_Re_1000
+2025-08-15 20:16:10 - Copying base case to /workspace/runs/cavity_Re_1000
+2025-08-15 20:16:10 - Working in: /workspace/runs/cavity_Re_1000
+2025-08-15 20:16:10 - Case contents:
+2025-08-15 20:16:10 - Setting Reynolds number to 1000
+2025-08-15 20:16:10 - DEBUG: transportProperties nu content:
+2025-08-15 20:16:10 - Setting Reynolds number to 1000
+2025-08-15 20:16:10 - Calculated kinematic viscosity: .00100000
+2025-08-15 20:16:10 - Setting Reynolds number to 1000
+2025-08-15 20:16:10 - Calculated kinematic viscosity: .0010000000
+2025-08-15 20:16:10 - Transport properties file content:
+2025-08-15 20:16:10 - Starting blockMesh for Re=1000
+2025-08-15 20:16:10 - ✓ blockMesh completed successfully
+2025-08-15 20:16:10 - Running icoFoam solver for Re=1000
+2025-08-15 20:16:10 - ✓ icoFoam completed in 0 seconds
+2025-08-15 20:16:10 - SUCCESS: Valid results for Re=1000, final time=0.5
+2025-08-15 20:16:10 - ✓ Case Re=1000 completed successfully
+2025-08-15 20:16:10 - Recorded: Re=1000, Status=SUCCESS
+2025-08-15 20:16:10 - === Completed Re=1000 ===
+2025-08-15 20:16:10 - === PARAMETRIC STUDY COMPLETED ===
+2025-08-15 20:16:10 - Total cases: 4
+2025-08-15 20:16:10 - Successful cases: 4
+2025-08-15 20:16:10 - Success rate: 100.0%
+2025-08-15 20:16:10 - Results summary:
+2025-08-15 20:16:10 - Case directories created:
+2025-08-15 20:16:10 - Detailed log: /workspace/runs/parametric-study.log
+2025-08-15 20:16:10 - === STUDY FINISHED SUCCESSFULLY ===
+2025-08-15 20:17:28 - Starting OpenFOAM parametric study
+2025-08-15 20:17:28 - Workspace: /workspace
+2025-08-15 20:17:28 - Base case: /workspace/cavity-flow-case
+2025-08-15 20:17:28 - ✓ Base case verified: /workspace/cavity-flow-case
+2025-08-15 20:17:28 - Starting parametric study execution
+2025-08-15 20:17:28 - Testing Reynolds numbers: 100 200 500 1000
+2025-08-15 20:17:28 - === Processing Reynolds number: 100 ===
+2025-08-15 20:17:28 - Removing existing case: /workspace/runs/cavity_Re_100
+2025-08-15 20:17:28 - Copying base case to /workspace/runs/cavity_Re_100
+2025-08-15 20:17:28 - Working in: /workspace/runs/cavity_Re_100
+2025-08-15 20:17:28 - Case contents:
+2025-08-15 20:17:28 - Setting Reynolds number to 100
+2025-08-15 20:17:28 - DEBUG: transportProperties nu content:
+2025-08-15 20:17:28 - Setting Reynolds number to 100
+2025-08-15 20:17:28 - Calculated kinematic viscosity: .01000000
+2025-08-15 20:17:28 - Setting Reynolds number to 100
+2025-08-15 20:17:28 - Calculated kinematic viscosity: .0100000000
+2025-08-15 20:17:28 - Transport properties file content:
+2025-08-15 20:17:28 - Starting blockMesh for Re=100
+2025-08-15 20:17:29 - ✓ blockMesh completed successfully
+2025-08-15 20:17:29 - Running icoFoam solver for Re=100
+2025-08-15 20:17:29 - ✓ icoFoam completed in 1 seconds
+2025-08-15 20:17:29 - SUCCESS: Valid results for Re=100, final time=0.5
+2025-08-15 20:17:29 - ✓ Case Re=100 completed successfully
+2025-08-15 20:17:29 - Recorded: Re=100, Status=SUCCESS
+2025-08-15 20:17:29 - === Completed Re=100 ===
+2025-08-15 20:17:29 - === Processing Reynolds number: 200 ===
+2025-08-15 20:17:29 - Removing existing case: /workspace/runs/cavity_Re_200
+2025-08-15 20:17:29 - Copying base case to /workspace/runs/cavity_Re_200
+2025-08-15 20:17:29 - Working in: /workspace/runs/cavity_Re_200
+2025-08-15 20:17:29 - Case contents:
+2025-08-15 20:17:29 - Setting Reynolds number to 200
+2025-08-15 20:17:29 - DEBUG: transportProperties nu content:
+2025-08-15 20:17:29 - Setting Reynolds number to 200
+2025-08-15 20:17:29 - Calculated kinematic viscosity: .00500000
+2025-08-15 20:17:29 - Setting Reynolds number to 200
+2025-08-15 20:17:29 - Calculated kinematic viscosity: .0050000000
+2025-08-15 20:17:29 - Transport properties file content:
+2025-08-15 20:17:29 - Starting blockMesh for Re=200
+2025-08-15 20:17:29 - ✓ blockMesh completed successfully
+2025-08-15 20:17:29 - Running icoFoam solver for Re=200
+2025-08-15 20:17:29 - ✓ icoFoam completed in 0 seconds
+2025-08-15 20:17:29 - SUCCESS: Valid results for Re=200, final time=0.5
+2025-08-15 20:17:29 - ✓ Case Re=200 completed successfully
+2025-08-15 20:17:29 - Recorded: Re=200, Status=SUCCESS
+2025-08-15 20:17:29 - === Completed Re=200 ===
+2025-08-15 20:17:29 - === Processing Reynolds number: 500 ===
+2025-08-15 20:17:29 - Removing existing case: /workspace/runs/cavity_Re_500
+2025-08-15 20:17:29 - Copying base case to /workspace/runs/cavity_Re_500
+2025-08-15 20:17:29 - Working in: /workspace/runs/cavity_Re_500
+2025-08-15 20:17:29 - Case contents:
+2025-08-15 20:17:29 - Setting Reynolds number to 500
+2025-08-15 20:17:29 - DEBUG: transportProperties nu content:
+2025-08-15 20:17:29 - Setting Reynolds number to 500
+2025-08-15 20:17:29 - Calculated kinematic viscosity: .00200000
+2025-08-15 20:17:29 - Setting Reynolds number to 500
+2025-08-15 20:17:29 - Calculated kinematic viscosity: .0020000000
+2025-08-15 20:17:29 - Transport properties file content:
+2025-08-15 20:17:29 - Starting blockMesh for Re=500
+2025-08-15 20:17:29 - ✓ blockMesh completed successfully
+2025-08-15 20:17:29 - Running icoFoam solver for Re=500
+2025-08-15 20:17:29 - ✓ icoFoam completed in 0 seconds
+2025-08-15 20:17:29 - SUCCESS: Valid results for Re=500, final time=0.5
+2025-08-15 20:17:29 - ✓ Case Re=500 completed successfully
+2025-08-15 20:17:29 - Recorded: Re=500, Status=SUCCESS
+2025-08-15 20:17:29 - === Completed Re=500 ===
+2025-08-15 20:17:29 - === Processing Reynolds number: 1000 ===
+2025-08-15 20:17:29 - Removing existing case: /workspace/runs/cavity_Re_1000
+2025-08-15 20:17:29 - Copying base case to /workspace/runs/cavity_Re_1000
+2025-08-15 20:17:29 - Working in: /workspace/runs/cavity_Re_1000
+2025-08-15 20:17:29 - Case contents:
+2025-08-15 20:17:29 - Setting Reynolds number to 1000
+2025-08-15 20:17:29 - DEBUG: transportProperties nu content:
+2025-08-15 20:17:29 - Setting Reynolds number to 1000
+2025-08-15 20:17:29 - Calculated kinematic viscosity: .00100000
+2025-08-15 20:17:29 - Setting Reynolds number to 1000
+2025-08-15 20:17:29 - Calculated kinematic viscosity: .0010000000
+2025-08-15 20:17:29 - Transport properties file content:
+2025-08-15 20:17:29 - Starting blockMesh for Re=1000
+2025-08-15 20:17:29 - ✓ blockMesh completed successfully
+2025-08-15 20:17:29 - Running icoFoam solver for Re=1000
+2025-08-15 20:17:29 - ✓ icoFoam completed in 0 seconds
+2025-08-15 20:17:29 - SUCCESS: Valid results for Re=1000, final time=0.5
+2025-08-15 20:17:29 - ✓ Case Re=1000 completed successfully
+2025-08-15 20:17:29 - Recorded: Re=1000, Status=SUCCESS
+2025-08-15 20:17:29 - === Completed Re=1000 ===
+2025-08-15 20:17:29 - === PARAMETRIC STUDY COMPLETED ===
+2025-08-15 20:17:29 - Total cases: 4
+2025-08-15 20:17:29 - Successful cases: 4
+2025-08-15 20:17:29 - Success rate: 100.0%
+2025-08-15 20:17:29 - Results summary:
+2025-08-15 20:17:29 - Case directories created:
+2025-08-15 20:17:29 - Detailed log: /workspace/runs/parametric-study.log
+2025-08-15 20:17:30 - === STUDY FINISHED SUCCESSFULLY ===
+2025-08-15 20:17:36 - Starting OpenFOAM parametric study
+2025-08-15 20:17:36 - Workspace: /workspace
+2025-08-15 20:17:36 - Base case: /workspace/cavity-flow-case
+2025-08-15 20:17:36 - ✓ Base case verified: /workspace/cavity-flow-case
+2025-08-15 20:17:36 - Starting parametric study execution
+2025-08-15 20:17:36 - Testing Reynolds numbers: 100 200 500 1000
+2025-08-15 20:17:36 - === Processing Reynolds number: 100 ===
+2025-08-15 20:17:36 - Removing existing case: /workspace/runs/cavity_Re_100
+2025-08-15 20:17:36 - Copying base case to /workspace/runs/cavity_Re_100
+2025-08-15 20:17:36 - Working in: /workspace/runs/cavity_Re_100
+2025-08-15 20:17:36 - Case contents:
+2025-08-15 20:17:36 - Setting Reynolds number to 100
+2025-08-15 20:17:36 - DEBUG: transportProperties nu content:
+2025-08-15 20:17:36 - Setting Reynolds number to 100
+2025-08-15 20:17:36 - Calculated kinematic viscosity: .01000000
+2025-08-15 20:17:36 - Setting Reynolds number to 100
+2025-08-15 20:17:36 - Calculated kinematic viscosity: .0100000000
+2025-08-15 20:17:36 - Transport properties file content:
+2025-08-15 20:17:36 - Starting blockMesh for Re=100
+2025-08-15 20:17:36 - ✓ blockMesh completed successfully
+2025-08-15 20:17:36 - Running icoFoam solver for Re=100
+2025-08-15 20:17:36 - ✓ icoFoam completed in 0 seconds
+2025-08-15 20:17:36 - SUCCESS: Valid results for Re=100, final time=0.5
+2025-08-15 20:17:36 - ✓ Case Re=100 completed successfully
+2025-08-15 20:17:36 - Recorded: Re=100, Status=SUCCESS
+2025-08-15 20:17:36 - === Completed Re=100 ===
+2025-08-15 20:17:36 - === Processing Reynolds number: 200 ===
+2025-08-15 20:17:36 - Removing existing case: /workspace/runs/cavity_Re_200
+2025-08-15 20:17:36 - Copying base case to /workspace/runs/cavity_Re_200
+2025-08-15 20:17:36 - Working in: /workspace/runs/cavity_Re_200
+2025-08-15 20:17:36 - Case contents:
+2025-08-15 20:17:36 - Setting Reynolds number to 200
+2025-08-15 20:17:36 - DEBUG: transportProperties nu content:
+2025-08-15 20:17:36 - Setting Reynolds number to 200
+2025-08-15 20:17:36 - Calculated kinematic viscosity: .00500000
+2025-08-15 20:17:36 - Setting Reynolds number to 200
+2025-08-15 20:17:36 - Calculated kinematic viscosity: .0050000000
+2025-08-15 20:17:36 - Transport properties file content:
+2025-08-15 20:17:36 - Starting blockMesh for Re=200
+2025-08-15 20:17:36 - ✓ blockMesh completed successfully
+2025-08-15 20:17:36 - Running icoFoam solver for Re=200
+2025-08-15 20:17:36 - ✓ icoFoam completed in 0 seconds
+2025-08-15 20:17:36 - SUCCESS: Valid results for Re=200, final time=0.5
+2025-08-15 20:17:36 - ✓ Case Re=200 completed successfully
+2025-08-15 20:17:36 - Recorded: Re=200, Status=SUCCESS
+2025-08-15 20:17:36 - === Completed Re=200 ===
+2025-08-15 20:17:36 - === Processing Reynolds number: 500 ===
+2025-08-15 20:17:36 - Removing existing case: /workspace/runs/cavity_Re_500
+2025-08-15 20:17:36 - Copying base case to /workspace/runs/cavity_Re_500
+2025-08-15 20:17:36 - Working in: /workspace/runs/cavity_Re_500
+2025-08-15 20:17:36 - Case contents:
+2025-08-15 20:17:36 - Setting Reynolds number to 500
+2025-08-15 20:17:36 - DEBUG: transportProperties nu content:
+2025-08-15 20:17:36 - Setting Reynolds number to 500
+2025-08-15 20:17:36 - Calculated kinematic viscosity: .00200000
+2025-08-15 20:17:36 - Setting Reynolds number to 500
+2025-08-15 20:17:36 - Calculated kinematic viscosity: .0020000000
+2025-08-15 20:17:36 - Transport properties file content:
+2025-08-15 20:17:36 - Starting blockMesh for Re=500
+2025-08-15 20:17:36 - ✓ blockMesh completed successfully
+2025-08-15 20:17:36 - Running icoFoam solver for Re=500
+2025-08-15 20:17:36 - ✓ icoFoam completed in 0 seconds
+2025-08-15 20:17:36 - SUCCESS: Valid results for Re=500, final time=0.5
+2025-08-15 20:17:36 - ✓ Case Re=500 completed successfully
+2025-08-15 20:17:36 - Recorded: Re=500, Status=SUCCESS
+2025-08-15 20:17:36 - === Completed Re=500 ===
+2025-08-15 20:17:36 - === Processing Reynolds number: 1000 ===
+2025-08-15 20:17:36 - Removing existing case: /workspace/runs/cavity_Re_1000
+2025-08-15 20:17:36 - Copying base case to /workspace/runs/cavity_Re_1000
+2025-08-15 20:17:36 - Working in: /workspace/runs/cavity_Re_1000
+2025-08-15 20:17:36 - Case contents:
+2025-08-15 20:17:36 - Setting Reynolds number to 1000
+2025-08-15 20:17:36 - DEBUG: transportProperties nu content:
+2025-08-15 20:17:36 - Setting Reynolds number to 1000
+2025-08-15 20:17:36 - Calculated kinematic viscosity: .00100000
+2025-08-15 20:17:36 - Setting Reynolds number to 1000
+2025-08-15 20:17:36 - Calculated kinematic viscosity: .0010000000
+2025-08-15 20:17:36 - Transport properties file content:
+2025-08-15 20:17:36 - Starting blockMesh for Re=1000
+2025-08-15 20:17:36 - ✓ blockMesh completed successfully
+2025-08-15 20:17:37 - Running icoFoam solver for Re=1000
+2025-08-15 20:17:37 - ✓ icoFoam completed in 1 seconds
+2025-08-15 20:17:37 - SUCCESS: Valid results for Re=1000, final time=0.5
+2025-08-15 20:17:37 - ✓ Case Re=1000 completed successfully
+2025-08-15 20:17:37 - Recorded: Re=1000, Status=SUCCESS
+2025-08-15 20:17:37 - === Completed Re=1000 ===
+2025-08-15 20:17:37 - === PARAMETRIC STUDY COMPLETED ===
+2025-08-15 20:17:37 - Total cases: 4
+2025-08-15 20:17:37 - Successful cases: 4
+2025-08-15 20:17:37 - Success rate: 100.0%
+2025-08-15 20:17:37 - Results summary:
+2025-08-15 20:17:37 - Case directories created:
+2025-08-15 20:17:37 - Detailed log: /workspace/runs/parametric-study.log
+2025-08-15 20:17:37 - === STUDY FINISHED SUCCESSFULLY ===
+2025-08-15 20:20:20 - Starting OpenFOAM parametric study
+2025-08-15 20:20:20 - Workspace: /workspace
+2025-08-15 20:20:20 - Base case: /workspace/cavity-flow-case
+2025-08-15 20:20:20 - ✓ Base case verified: /workspace/cavity-flow-case
+2025-08-15 20:20:20 - Starting parametric study execution
+2025-08-15 20:20:20 - Testing Reynolds numbers: 100 200 500 1000
+2025-08-15 20:20:20 - === Processing Reynolds number: 100 ===
+2025-08-15 20:20:20 - Removing existing case: /workspace/runs/cavity_Re_100
+2025-08-15 20:20:20 - Copying base case to /workspace/runs/cavity_Re_100
+2025-08-15 20:20:20 - Working in: /workspace/runs/cavity_Re_100
+2025-08-15 20:20:20 - Case contents:
+2025-08-15 20:20:20 - Setting Reynolds number to 100
+2025-08-15 20:20:20 - DEBUG: transportProperties nu content:
+2025-08-15 20:20:20 - Setting Reynolds number to 100
+2025-08-15 20:20:20 - Calculated kinematic viscosity: .01000000
+2025-08-15 20:20:20 - Setting Reynolds number to 100
+2025-08-15 20:20:20 - Calculated kinematic viscosity: .0100000000
+2025-08-15 20:20:20 - Transport properties file content:
+2025-08-15 20:20:20 - Starting blockMesh for Re=100
+2025-08-15 20:20:20 - ✓ blockMesh completed successfully
+2025-08-15 20:20:20 - Running icoFoam solver for Re=100
+2025-08-15 20:20:20 - ✓ icoFoam completed in 0 seconds
+2025-08-15 20:20:20 - SUCCESS: Valid results for Re=100, final time=0.5
+2025-08-15 20:20:20 - ✓ Case Re=100 completed successfully
+2025-08-15 20:20:20 - Recorded: Re=100, Status=SUCCESS
+2025-08-15 20:20:20 - === Completed Re=100 ===
+2025-08-15 20:20:20 - === Processing Reynolds number: 200 ===
+2025-08-15 20:20:20 - Removing existing case: /workspace/runs/cavity_Re_200
+2025-08-15 20:20:20 - Copying base case to /workspace/runs/cavity_Re_200
+2025-08-15 20:20:20 - Working in: /workspace/runs/cavity_Re_200
+2025-08-15 20:20:20 - Case contents:
+2025-08-15 20:20:20 - Setting Reynolds number to 200
+2025-08-15 20:20:20 - DEBUG: transportProperties nu content:
+2025-08-15 20:20:20 - Setting Reynolds number to 200
+2025-08-15 20:20:20 - Calculated kinematic viscosity: .00500000
+2025-08-15 20:20:20 - Setting Reynolds number to 200
+2025-08-15 20:20:20 - Calculated kinematic viscosity: .0050000000
+2025-08-15 20:20:20 - Transport properties file content:
+2025-08-15 20:20:20 - Starting blockMesh for Re=200
+2025-08-15 20:20:20 - ✓ blockMesh completed successfully
+2025-08-15 20:20:20 - Running icoFoam solver for Re=200
+2025-08-15 20:20:20 - ✓ icoFoam completed in 0 seconds
+2025-08-15 20:20:20 - SUCCESS: Valid results for Re=200, final time=0.5
+2025-08-15 20:20:20 - ✓ Case Re=200 completed successfully
+2025-08-15 20:20:20 - Recorded: Re=200, Status=SUCCESS
+2025-08-15 20:20:20 - === Completed Re=200 ===
+2025-08-15 20:20:20 - === Processing Reynolds number: 500 ===
+2025-08-15 20:20:20 - Removing existing case: /workspace/runs/cavity_Re_500
+2025-08-15 20:20:20 - Copying base case to /workspace/runs/cavity_Re_500
+2025-08-15 20:20:20 - Working in: /workspace/runs/cavity_Re_500
+2025-08-15 20:20:20 - Case contents:
+2025-08-15 20:20:20 - Setting Reynolds number to 500
+2025-08-15 20:20:20 - DEBUG: transportProperties nu content:
+2025-08-15 20:20:20 - Setting Reynolds number to 500
+2025-08-15 20:20:20 - Calculated kinematic viscosity: .00200000
+2025-08-15 20:20:20 - Setting Reynolds number to 500
+2025-08-15 20:20:20 - Calculated kinematic viscosity: .0020000000
+2025-08-15 20:20:20 - Transport properties file content:
+2025-08-15 20:20:20 - Starting blockMesh for Re=500
+2025-08-15 20:20:20 - ✓ blockMesh completed successfully
+2025-08-15 20:20:21 - Running icoFoam solver for Re=500
+2025-08-15 20:20:21 - ✓ icoFoam completed in 1 seconds
+2025-08-15 20:20:21 - SUCCESS: Valid results for Re=500, final time=0.5
+2025-08-15 20:20:21 - ✓ Case Re=500 completed successfully
+2025-08-15 20:20:21 - Recorded: Re=500, Status=SUCCESS
+2025-08-15 20:20:21 - === Completed Re=500 ===
+2025-08-15 20:20:21 - === Processing Reynolds number: 1000 ===
+2025-08-15 20:20:21 - Removing existing case: /workspace/runs/cavity_Re_1000
+2025-08-15 20:20:21 - Copying base case to /workspace/runs/cavity_Re_1000
+2025-08-15 20:20:21 - Working in: /workspace/runs/cavity_Re_1000
+2025-08-15 20:20:21 - Case contents:
+2025-08-15 20:20:21 - Setting Reynolds number to 1000
+2025-08-15 20:20:21 - DEBUG: transportProperties nu content:
+2025-08-15 20:20:21 - Setting Reynolds number to 1000
+2025-08-15 20:20:21 - Calculated kinematic viscosity: .00100000
+2025-08-15 20:20:21 - Setting Reynolds number to 1000
+2025-08-15 20:20:21 - Calculated kinematic viscosity: .0010000000
+2025-08-15 20:20:21 - Transport properties file content:
+2025-08-15 20:20:21 - Starting blockMesh for Re=1000
+2025-08-15 20:20:21 - ✓ blockMesh completed successfully
+2025-08-15 20:20:21 - Running icoFoam solver for Re=1000
+2025-08-15 20:20:21 - ✓ icoFoam completed in 0 seconds
+2025-08-15 20:20:21 - SUCCESS: Valid results for Re=1000, final time=0.5
+2025-08-15 20:20:21 - ✓ Case Re=1000 completed successfully
+2025-08-15 20:20:21 - Recorded: Re=1000, Status=SUCCESS
+2025-08-15 20:20:21 - === Completed Re=1000 ===
+2025-08-15 20:20:21 - === PARAMETRIC STUDY COMPLETED ===
+2025-08-15 20:20:21 - Total cases: 4
+2025-08-15 20:20:21 - Successful cases: 4
+2025-08-15 20:20:21 - Success rate: 100.0%
+2025-08-15 20:20:21 - Results summary:
+2025-08-15 20:20:21 - Case directories created:
+2025-08-15 20:20:21 - Detailed log: /workspace/runs/parametric-study.log
+2025-08-15 20:20:21 - === STUDY FINISHED SUCCESSFULLY ===
+2025-08-16 08:09:12 - Starting OpenFOAM parametric study
+2025-08-16 08:09:12 - Workspace: /workspace
+2025-08-16 08:09:12 - Base case: /workspace/cavity-flow-case
+2025-08-16 08:09:12 - ✓ Base case verified: /workspace/cavity-flow-case
+2025-08-16 08:09:12 - Starting parametric study execution
+2025-08-16 08:09:12 - Testing Reynolds numbers: 100 200 500 1000
+2025-08-16 08:09:12 - === Processing Reynolds number: 100 ===
+2025-08-16 08:09:12 - Removing existing case: /workspace/runs/cavity_Re_100
+2025-08-16 08:09:12 - Copying base case to /workspace/runs/cavity_Re_100
+2025-08-16 08:09:12 - Working in: /workspace/runs/cavity_Re_100
+2025-08-16 08:09:12 - Case contents:
+2025-08-16 08:09:12 - Setting Reynolds number to 100
+2025-08-16 08:09:12 - DEBUG: transportProperties nu content:
+2025-08-16 08:09:12 - Setting Reynolds number to 100
+2025-08-16 08:09:12 - Calculated kinematic viscosity: .01000000
+2025-08-16 08:09:12 - Setting Reynolds number to 100
+2025-08-16 08:09:12 - Calculated kinematic viscosity: .0100000000
+2025-08-16 08:09:12 - Transport properties file content:
+2025-08-16 08:09:12 - Starting blockMesh for Re=100
+2025-08-16 08:09:13 - ✓ blockMesh completed successfully
+2025-08-16 08:09:13 - Running icoFoam solver for Re=100
+2025-08-16 08:09:13 - ✓ icoFoam completed in 1 seconds
+2025-08-16 08:09:13 - SUCCESS: Valid results for Re=100, final time=0.5
+2025-08-16 08:09:13 - ✓ Case Re=100 completed successfully
+2025-08-16 08:09:13 - Recorded: Re=100, Status=SUCCESS
+2025-08-16 08:09:13 - === Completed Re=100 ===
+2025-08-16 08:09:13 - === Processing Reynolds number: 200 ===
+2025-08-16 08:09:13 - Removing existing case: /workspace/runs/cavity_Re_200
+2025-08-16 08:09:13 - Copying base case to /workspace/runs/cavity_Re_200
+2025-08-16 08:09:13 - Working in: /workspace/runs/cavity_Re_200
+2025-08-16 08:09:13 - Case contents:
+2025-08-16 08:09:13 - Setting Reynolds number to 200
+2025-08-16 08:09:13 - DEBUG: transportProperties nu content:
+2025-08-16 08:09:13 - Setting Reynolds number to 200
+2025-08-16 08:09:13 - Calculated kinematic viscosity: .00500000
+2025-08-16 08:09:13 - Setting Reynolds number to 200
+2025-08-16 08:09:13 - Calculated kinematic viscosity: .0050000000
+2025-08-16 08:09:13 - Transport properties file content:
+2025-08-16 08:09:13 - Starting blockMesh for Re=200
+2025-08-16 08:09:13 - ✓ blockMesh completed successfully
+2025-08-16 08:09:13 - Running icoFoam solver for Re=200
+2025-08-16 08:09:13 - ✓ icoFoam completed in 0 seconds
+2025-08-16 08:09:13 - SUCCESS: Valid results for Re=200, final time=0.5
+2025-08-16 08:09:13 - ✓ Case Re=200 completed successfully
+2025-08-16 08:09:13 - Recorded: Re=200, Status=SUCCESS
+2025-08-16 08:09:13 - === Completed Re=200 ===
+2025-08-16 08:09:13 - === Processing Reynolds number: 500 ===
+2025-08-16 08:09:13 - Removing existing case: /workspace/runs/cavity_Re_500
+2025-08-16 08:09:13 - Copying base case to /workspace/runs/cavity_Re_500
+2025-08-16 08:09:13 - Working in: /workspace/runs/cavity_Re_500
+2025-08-16 08:09:13 - Case contents:
+2025-08-16 08:09:13 - Setting Reynolds number to 500
+2025-08-16 08:09:13 - DEBUG: transportProperties nu content:
+2025-08-16 08:09:13 - Setting Reynolds number to 500
+2025-08-16 08:09:13 - Calculated kinematic viscosity: .00200000
+2025-08-16 08:09:13 - Setting Reynolds number to 500
+2025-08-16 08:09:13 - Calculated kinematic viscosity: .0020000000
+2025-08-16 08:09:13 - Transport properties file content:
+2025-08-16 08:09:13 - Starting blockMesh for Re=500
+2025-08-16 08:09:13 - ✓ blockMesh completed successfully
+2025-08-16 08:09:13 - Running icoFoam solver for Re=500
+2025-08-16 08:09:13 - ✓ icoFoam completed in 0 seconds
+2025-08-16 08:09:13 - SUCCESS: Valid results for Re=500, final time=0.5
+2025-08-16 08:09:13 - ✓ Case Re=500 completed successfully
+2025-08-16 08:09:13 - Recorded: Re=500, Status=SUCCESS
+2025-08-16 08:09:13 - === Completed Re=500 ===
+2025-08-16 08:09:13 - === Processing Reynolds number: 1000 ===
+2025-08-16 08:09:13 - Removing existing case: /workspace/runs/cavity_Re_1000
+2025-08-16 08:09:13 - Copying base case to /workspace/runs/cavity_Re_1000
+2025-08-16 08:09:13 - Working in: /workspace/runs/cavity_Re_1000
+2025-08-16 08:09:13 - Case contents:
+2025-08-16 08:09:13 - Setting Reynolds number to 1000
+2025-08-16 08:09:13 - DEBUG: transportProperties nu content:
+2025-08-16 08:09:13 - Setting Reynolds number to 1000
+2025-08-16 08:09:13 - Calculated kinematic viscosity: .00100000
+2025-08-16 08:09:13 - Setting Reynolds number to 1000
+2025-08-16 08:09:13 - Calculated kinematic viscosity: .0010000000
+2025-08-16 08:09:13 - Transport properties file content:
+2025-08-16 08:09:13 - Starting blockMesh for Re=1000
+2025-08-16 08:09:13 - ✓ blockMesh completed successfully
+2025-08-16 08:09:13 - Running icoFoam solver for Re=1000
+2025-08-16 08:09:13 - ✓ icoFoam completed in 0 seconds
+2025-08-16 08:09:13 - SUCCESS: Valid results for Re=1000, final time=0.5
+2025-08-16 08:09:13 - ✓ Case Re=1000 completed successfully
+2025-08-16 08:09:13 - Recorded: Re=1000, Status=SUCCESS
+2025-08-16 08:09:13 - === Completed Re=1000 ===
+2025-08-16 08:09:13 - === PARAMETRIC STUDY COMPLETED ===
+2025-08-16 08:09:13 - Total cases: 4
+2025-08-16 08:09:13 - Successful cases: 4
+2025-08-16 08:09:13 - Success rate: 100.0%
+2025-08-16 08:09:13 - Results summary:
+2025-08-16 08:09:13 - Case directories created:
+2025-08-16 08:09:14 - Detailed log: /workspace/runs/parametric-study.log
+2025-08-16 08:09:14 - === STUDY FINISHED SUCCESSFULLY ===
+2025-08-16 08:09:18 - Starting OpenFOAM parametric study
+2025-08-16 08:09:18 - Workspace: /workspace
+2025-08-16 08:09:18 - Base case: /workspace/cavity-flow-case
+2025-08-16 08:09:18 - ✓ Base case verified: /workspace/cavity-flow-case
+2025-08-16 08:09:18 - Starting parametric study execution
+2025-08-16 08:09:18 - Testing Reynolds numbers: 100 200 500 1000
+2025-08-16 08:09:18 - === Processing Reynolds number: 100 ===
+2025-08-16 08:09:18 - Removing existing case: /workspace/runs/cavity_Re_100
+2025-08-16 08:09:18 - Copying base case to /workspace/runs/cavity_Re_100
+2025-08-16 08:09:18 - Working in: /workspace/runs/cavity_Re_100
+2025-08-16 08:09:18 - Case contents:
+2025-08-16 08:09:18 - Setting Reynolds number to 100
+2025-08-16 08:09:18 - DEBUG: transportProperties nu content:
+2025-08-16 08:09:18 - Setting Reynolds number to 100
+2025-08-16 08:09:18 - Calculated kinematic viscosity: .01000000
+2025-08-16 08:09:18 - Setting Reynolds number to 100
+2025-08-16 08:09:18 - Calculated kinematic viscosity: .0100000000
+2025-08-16 08:09:18 - Transport properties file content:
+2025-08-16 08:09:18 - Starting blockMesh for Re=100
+2025-08-16 08:09:18 - ✓ blockMesh completed successfully
+2025-08-16 08:09:18 - Running icoFoam solver for Re=100
+2025-08-16 08:09:18 - ✓ icoFoam completed in 0 seconds
+2025-08-16 08:09:18 - SUCCESS: Valid results for Re=100, final time=0.5
+2025-08-16 08:09:18 - ✓ Case Re=100 completed successfully
+2025-08-16 08:09:18 - Recorded: Re=100, Status=SUCCESS
+2025-08-16 08:09:18 - === Completed Re=100 ===
+2025-08-16 08:09:18 - === Processing Reynolds number: 200 ===
+2025-08-16 08:09:18 - Removing existing case: /workspace/runs/cavity_Re_200
+2025-08-16 08:09:18 - Copying base case to /workspace/runs/cavity_Re_200
+2025-08-16 08:09:18 - Working in: /workspace/runs/cavity_Re_200
+2025-08-16 08:09:18 - Case contents:
+2025-08-16 08:09:18 - Setting Reynolds number to 200
+2025-08-16 08:09:18 - DEBUG: transportProperties nu content:
+2025-08-16 08:09:18 - Setting Reynolds number to 200
+2025-08-16 08:09:18 - Calculated kinematic viscosity: .00500000
+2025-08-16 08:09:18 - Setting Reynolds number to 200
+2025-08-16 08:09:18 - Calculated kinematic viscosity: .0050000000
+2025-08-16 08:09:18 - Transport properties file content:
+2025-08-16 08:09:18 - Starting blockMesh for Re=200
+2025-08-16 08:09:18 - ✓ blockMesh completed successfully
+2025-08-16 08:09:19 - Running icoFoam solver for Re=200
+2025-08-16 08:09:19 - ✓ icoFoam completed in 1 seconds
+2025-08-16 08:09:19 - SUCCESS: Valid results for Re=200, final time=0.5
+2025-08-16 08:09:19 - ✓ Case Re=200 completed successfully
+2025-08-16 08:09:19 - Recorded: Re=200, Status=SUCCESS
+2025-08-16 08:09:19 - === Completed Re=200 ===
+2025-08-16 08:09:19 - === Processing Reynolds number: 500 ===
+2025-08-16 08:09:19 - Removing existing case: /workspace/runs/cavity_Re_500
+2025-08-16 08:09:19 - Copying base case to /workspace/runs/cavity_Re_500
+2025-08-16 08:09:19 - Working in: /workspace/runs/cavity_Re_500
+2025-08-16 08:09:19 - Case contents:
+2025-08-16 08:09:19 - Setting Reynolds number to 500
+2025-08-16 08:09:19 - DEBUG: transportProperties nu content:
+2025-08-16 08:09:19 - Setting Reynolds number to 500
+2025-08-16 08:09:19 - Calculated kinematic viscosity: .00200000
+2025-08-16 08:09:19 - Setting Reynolds number to 500
+2025-08-16 08:09:19 - Calculated kinematic viscosity: .0020000000
+2025-08-16 08:09:19 - Transport properties file content:
+2025-08-16 08:09:19 - Starting blockMesh for Re=500
+2025-08-16 08:09:19 - ✓ blockMesh completed successfully
+2025-08-16 08:09:19 - Running icoFoam solver for Re=500
+2025-08-16 08:09:19 - ✓ icoFoam completed in 0 seconds
+2025-08-16 08:09:19 - SUCCESS: Valid results for Re=500, final time=0.5
+2025-08-16 08:09:19 - ✓ Case Re=500 completed successfully
+2025-08-16 08:09:19 - Recorded: Re=500, Status=SUCCESS
+2025-08-16 08:09:19 - === Completed Re=500 ===
+2025-08-16 08:09:19 - === Processing Reynolds number: 1000 ===
+2025-08-16 08:09:19 - Removing existing case: /workspace/runs/cavity_Re_1000
+2025-08-16 08:09:19 - Copying base case to /workspace/runs/cavity_Re_1000
+2025-08-16 08:09:19 - Working in: /workspace/runs/cavity_Re_1000
+2025-08-16 08:09:19 - Case contents:
+2025-08-16 08:09:19 - Setting Reynolds number to 1000
+2025-08-16 08:09:19 - DEBUG: transportProperties nu content:
+2025-08-16 08:09:19 - Setting Reynolds number to 1000
+2025-08-16 08:09:19 - Calculated kinematic viscosity: .00100000
+2025-08-16 08:09:19 - Setting Reynolds number to 1000
+2025-08-16 08:09:19 - Calculated kinematic viscosity: .0010000000
+2025-08-16 08:09:19 - Transport properties file content:
+2025-08-16 08:09:19 - Starting blockMesh for Re=1000
+2025-08-16 08:09:19 - ✓ blockMesh completed successfully
+2025-08-16 08:09:19 - Running icoFoam solver for Re=1000
+2025-08-16 08:09:19 - ✓ icoFoam completed in 0 seconds
+2025-08-16 08:09:19 - SUCCESS: Valid results for Re=1000, final time=0.5
+2025-08-16 08:09:19 - ✓ Case Re=1000 completed successfully
+2025-08-16 08:09:19 - Recorded: Re=1000, Status=SUCCESS
+2025-08-16 08:09:19 - === Completed Re=1000 ===
+2025-08-16 08:09:19 - === PARAMETRIC STUDY COMPLETED ===
+2025-08-16 08:09:19 - Total cases: 4
+2025-08-16 08:09:19 - Successful cases: 4
+2025-08-16 08:09:19 - Success rate: 100.0%
+2025-08-16 08:09:19 - Results summary:
+2025-08-16 08:09:19 - Case directories created:
+2025-08-16 08:09:19 - Detailed log: /workspace/runs/parametric-study.log
+2025-08-16 08:09:19 - === STUDY FINISHED SUCCESSFULLY ===
+2025-08-16 08:18:53 - Starting OpenFOAM parametric study
+2025-08-16 08:18:53 - Workspace: /workspace
+2025-08-16 08:18:53 - Base case: /workspace/cavity-flow-case
+2025-08-16 08:18:53 - ✓ Base case verified: /workspace/cavity-flow-case
+2025-08-16 08:18:53 - Starting parametric study execution
+2025-08-16 08:18:53 - Testing Reynolds numbers: 100 200 500 1000
+2025-08-16 08:18:53 - === Processing Reynolds number: 100 ===
+2025-08-16 08:18:53 - Removing existing case: /workspace/runs/cavity_Re_100
+2025-08-16 08:18:53 - Copying base case to /workspace/runs/cavity_Re_100
+2025-08-16 08:18:53 - Working in: /workspace/runs/cavity_Re_100
+2025-08-16 08:18:53 - Case contents:
+2025-08-16 08:18:53 - Setting Reynolds number to 100
+2025-08-16 08:18:53 - DEBUG: transportProperties nu content:
+2025-08-16 08:18:53 - Setting Reynolds number to 100
+2025-08-16 08:18:53 - Calculated kinematic viscosity: .01000000
+2025-08-16 08:18:53 - Setting Reynolds number to 100
+2025-08-16 08:18:53 - Calculated kinematic viscosity: .0100000000
+2025-08-16 08:18:53 - Transport properties file content:
+2025-08-16 08:18:53 - Starting blockMesh for Re=100
+2025-08-16 08:18:53 - ✓ blockMesh completed successfully
+2025-08-16 08:18:53 - Running icoFoam solver for Re=100
+2025-08-16 08:18:53 - ✓ icoFoam completed in 0 seconds
+2025-08-16 08:18:53 - SUCCESS: Valid results for Re=100, final time=0.5
+2025-08-16 08:18:53 - ✓ Case Re=100 completed successfully
+2025-08-16 08:18:53 - Recorded: Re=100, Status=SUCCESS
+2025-08-16 08:18:53 - === Completed Re=100 ===
+2025-08-16 08:18:53 - === Processing Reynolds number: 200 ===
+2025-08-16 08:18:53 - Removing existing case: /workspace/runs/cavity_Re_200
+2025-08-16 08:18:53 - Copying base case to /workspace/runs/cavity_Re_200
+2025-08-16 08:18:53 - Working in: /workspace/runs/cavity_Re_200
+2025-08-16 08:18:53 - Case contents:
+2025-08-16 08:18:53 - Setting Reynolds number to 200
+2025-08-16 08:18:53 - DEBUG: transportProperties nu content:
+2025-08-16 08:18:53 - Setting Reynolds number to 200
+2025-08-16 08:18:53 - Calculated kinematic viscosity: .00500000
+2025-08-16 08:18:53 - Setting Reynolds number to 200
+2025-08-16 08:18:53 - Calculated kinematic viscosity: .0050000000
+2025-08-16 08:18:53 - Transport properties file content:
+2025-08-16 08:18:53 - Starting blockMesh for Re=200
+2025-08-16 08:18:53 - ✓ blockMesh completed successfully
+2025-08-16 08:18:53 - Running icoFoam solver for Re=200
+2025-08-16 08:18:53 - ✓ icoFoam completed in 0 seconds
+2025-08-16 08:18:53 - SUCCESS: Valid results for Re=200, final time=0.5
+2025-08-16 08:18:53 - ✓ Case Re=200 completed successfully
+2025-08-16 08:18:53 - Recorded: Re=200, Status=SUCCESS
+2025-08-16 08:18:53 - === Completed Re=200 ===
+2025-08-16 08:18:53 - === Processing Reynolds number: 500 ===
+2025-08-16 08:18:53 - Removing existing case: /workspace/runs/cavity_Re_500
+2025-08-16 08:18:53 - Copying base case to /workspace/runs/cavity_Re_500
+2025-08-16 08:18:53 - Working in: /workspace/runs/cavity_Re_500
+2025-08-16 08:18:53 - Case contents:
+2025-08-16 08:18:53 - Setting Reynolds number to 500
+2025-08-16 08:18:53 - DEBUG: transportProperties nu content:
+2025-08-16 08:18:53 - Setting Reynolds number to 500
+2025-08-16 08:18:53 - Calculated kinematic viscosity: .00200000
+2025-08-16 08:18:53 - Setting Reynolds number to 500
+2025-08-16 08:18:53 - Calculated kinematic viscosity: .0020000000
+2025-08-16 08:18:53 - Transport properties file content:
+2025-08-16 08:18:53 - Starting blockMesh for Re=500
+2025-08-16 08:18:53 - ✓ blockMesh completed successfully
+2025-08-16 08:18:53 - Running icoFoam solver for Re=500
+2025-08-16 08:18:53 - ✓ icoFoam completed in 0 seconds
+2025-08-16 08:18:53 - SUCCESS: Valid results for Re=500, final time=0.5
+2025-08-16 08:18:53 - ✓ Case Re=500 completed successfully
+2025-08-16 08:18:53 - Recorded: Re=500, Status=SUCCESS
+2025-08-16 08:18:53 - === Completed Re=500 ===
+2025-08-16 08:18:53 - === Processing Reynolds number: 1000 ===
+2025-08-16 08:18:53 - Removing existing case: /workspace/runs/cavity_Re_1000
+2025-08-16 08:18:53 - Copying base case to /workspace/runs/cavity_Re_1000
+2025-08-16 08:18:53 - Working in: /workspace/runs/cavity_Re_1000
+2025-08-16 08:18:53 - Case contents:
+2025-08-16 08:18:53 - Setting Reynolds number to 1000
+2025-08-16 08:18:53 - DEBUG: transportProperties nu content:
+2025-08-16 08:18:53 - Setting Reynolds number to 1000
+2025-08-16 08:18:53 - Calculated kinematic viscosity: .00100000
+2025-08-16 08:18:53 - Setting Reynolds number to 1000
+2025-08-16 08:18:53 - Calculated kinematic viscosity: .0010000000
+2025-08-16 08:18:53 - Transport properties file content:
+2025-08-16 08:18:53 - Starting blockMesh for Re=1000
+2025-08-16 08:18:54 - ✓ blockMesh completed successfully
+2025-08-16 08:18:54 - Running icoFoam solver for Re=1000
+2025-08-16 08:18:54 - ✓ icoFoam completed in 1 seconds
+2025-08-16 08:18:54 - SUCCESS: Valid results for Re=1000, final time=0.5
+2025-08-16 08:18:54 - ✓ Case Re=1000 completed successfully
+2025-08-16 08:18:54 - Recorded: Re=1000, Status=SUCCESS
+2025-08-16 08:18:54 - === Completed Re=1000 ===
+2025-08-16 08:18:54 - === PARAMETRIC STUDY COMPLETED ===
+2025-08-16 08:18:54 - Total cases: 4
+2025-08-16 08:18:54 - Successful cases: 4
+2025-08-16 08:18:54 - Success rate: 100.0%
+2025-08-16 08:18:54 - Results summary:
+2025-08-16 08:18:54 - Case directories created:
+2025-08-16 08:18:54 - Detailed log: /workspace/runs/parametric-study.log
+2025-08-16 08:18:54 - === STUDY FINISHED SUCCESSFULLY ===
+2025-08-16 08:31:28 - Starting OpenFOAM parametric study
+2025-08-16 08:31:28 - Workspace: /workspace
+2025-08-16 08:31:28 - Base case: /workspace/cavity-flow-case
+2025-08-16 08:31:28 - ✓ Base case verified: /workspace/cavity-flow-case
+2025-08-16 08:31:28 - Starting parametric study execution
+2025-08-16 08:31:28 - Testing Reynolds numbers: 100 200 500 1000
+2025-08-16 08:31:28 - === Processing Reynolds number: 100 ===
+2025-08-16 08:31:28 - Removing existing case: /workspace/runs/cavity_Re_100
+2025-08-16 08:31:28 - Copying base case to /workspace/runs/cavity_Re_100
+2025-08-16 08:31:28 - Working in: /workspace/runs/cavity_Re_100
+2025-08-16 08:31:28 - Case contents:
+2025-08-16 08:31:28 - Setting Reynolds number to 100
+2025-08-16 08:31:28 - DEBUG: transportProperties nu content:
+2025-08-16 08:31:28 - Setting Reynolds number to 100
+2025-08-16 08:31:28 - Calculated kinematic viscosity: .01000000
+2025-08-16 08:31:28 - Setting Reynolds number to 100
+2025-08-16 08:31:28 - Calculated kinematic viscosity: .0100000000
+2025-08-16 08:31:28 - Transport properties file content:
+2025-08-16 08:31:28 - Starting blockMesh for Re=100
+2025-08-16 08:31:28 - ✓ blockMesh completed successfully
+2025-08-16 08:31:29 - Running icoFoam solver for Re=100
+2025-08-16 08:31:29 - ✓ icoFoam completed in 1 seconds
+2025-08-16 08:31:29 - SUCCESS: Valid results for Re=100, final time=0.5
+2025-08-16 08:31:29 - ✓ Case Re=100 completed successfully
+2025-08-16 08:31:29 - Recorded: Re=100, Status=SUCCESS
+2025-08-16 08:31:29 - === Completed Re=100 ===
+2025-08-16 08:31:29 - === Processing Reynolds number: 200 ===
+2025-08-16 08:31:29 - Removing existing case: /workspace/runs/cavity_Re_200
+2025-08-16 08:31:29 - Copying base case to /workspace/runs/cavity_Re_200
+2025-08-16 08:31:29 - Working in: /workspace/runs/cavity_Re_200
+2025-08-16 08:31:29 - Case contents:
+2025-08-16 08:31:29 - Setting Reynolds number to 200
+2025-08-16 08:31:29 - DEBUG: transportProperties nu content:
+2025-08-16 08:31:29 - Setting Reynolds number to 200
+2025-08-16 08:31:29 - Calculated kinematic viscosity: .00500000
+2025-08-16 08:31:29 - Setting Reynolds number to 200
+2025-08-16 08:31:29 - Calculated kinematic viscosity: .0050000000
+2025-08-16 08:31:29 - Transport properties file content:
+2025-08-16 08:31:29 - Starting blockMesh for Re=200
+2025-08-16 08:31:29 - ✓ blockMesh completed successfully
+2025-08-16 08:31:29 - Running icoFoam solver for Re=200
+2025-08-16 08:31:29 - ✓ icoFoam completed in 0 seconds
+2025-08-16 08:31:29 - SUCCESS: Valid results for Re=200, final time=0.5
+2025-08-16 08:31:29 - ✓ Case Re=200 completed successfully
+2025-08-16 08:31:29 - Recorded: Re=200, Status=SUCCESS
+2025-08-16 08:31:29 - === Completed Re=200 ===
+2025-08-16 08:31:29 - === Processing Reynolds number: 500 ===
+2025-08-16 08:31:29 - Removing existing case: /workspace/runs/cavity_Re_500
+2025-08-16 08:31:29 - Copying base case to /workspace/runs/cavity_Re_500
+2025-08-16 08:31:29 - Working in: /workspace/runs/cavity_Re_500
+2025-08-16 08:31:29 - Case contents:
+2025-08-16 08:31:29 - Setting Reynolds number to 500
+2025-08-16 08:31:29 - DEBUG: transportProperties nu content:
+2025-08-16 08:31:29 - Setting Reynolds number to 500
+2025-08-16 08:31:29 - Calculated kinematic viscosity: .00200000
+2025-08-16 08:31:29 - Setting Reynolds number to 500
+2025-08-16 08:31:29 - Calculated kinematic viscosity: .0020000000
+2025-08-16 08:31:29 - Transport properties file content:
+2025-08-16 08:31:29 - Starting blockMesh for Re=500
+2025-08-16 08:31:29 - ✓ blockMesh completed successfully
+2025-08-16 08:31:29 - Running icoFoam solver for Re=500
+2025-08-16 08:31:29 - ✓ icoFoam completed in 0 seconds
+2025-08-16 08:31:29 - SUCCESS: Valid results for Re=500, final time=0.5
+2025-08-16 08:31:29 - ✓ Case Re=500 completed successfully
+2025-08-16 08:31:29 - Recorded: Re=500, Status=SUCCESS
+2025-08-16 08:31:29 - === Completed Re=500 ===
+2025-08-16 08:31:29 - === Processing Reynolds number: 1000 ===
+2025-08-16 08:31:29 - Removing existing case: /workspace/runs/cavity_Re_1000
+2025-08-16 08:31:29 - Copying base case to /workspace/runs/cavity_Re_1000
+2025-08-16 08:31:29 - Working in: /workspace/runs/cavity_Re_1000
+2025-08-16 08:31:29 - Case contents:
+2025-08-16 08:31:29 - Setting Reynolds number to 1000
+2025-08-16 08:31:29 - DEBUG: transportProperties nu content:
+2025-08-16 08:31:29 - Setting Reynolds number to 1000
+2025-08-16 08:31:29 - Calculated kinematic viscosity: .00100000
+2025-08-16 08:31:29 - Setting Reynolds number to 1000
+2025-08-16 08:31:29 - Calculated kinematic viscosity: .0010000000
+2025-08-16 08:31:29 - Transport properties file content:
+2025-08-16 08:31:29 - Starting blockMesh for Re=1000
+2025-08-16 08:31:29 - ✓ blockMesh completed successfully
+2025-08-16 08:31:29 - Running icoFoam solver for Re=1000
+2025-08-16 08:31:29 - ✓ icoFoam completed in 0 seconds
+2025-08-16 08:31:29 - SUCCESS: Valid results for Re=1000, final time=0.5
+2025-08-16 08:31:29 - ✓ Case Re=1000 completed successfully
+2025-08-16 08:31:29 - Recorded: Re=1000, Status=SUCCESS
+2025-08-16 08:31:29 - === Completed Re=1000 ===
+2025-08-16 08:31:29 - === PARAMETRIC STUDY COMPLETED ===
+2025-08-16 08:31:29 - Total cases: 4
+2025-08-16 08:31:29 - Successful cases: 4
+2025-08-16 08:31:29 - Success rate: 100.0%
+2025-08-16 08:31:29 - Results summary:
+2025-08-16 08:31:29 - Case directories created:
+2025-08-16 08:31:29 - Detailed log: /workspace/runs/parametric-study.log
+2025-08-16 08:31:29 - === STUDY FINISHED SUCCESSFULLY ===
+2025-08-16 08:32:41 - Starting OpenFOAM parametric study
+2025-08-16 08:32:41 - Workspace: /workspace
+2025-08-16 08:32:41 - Base case: /workspace/cavity-flow-case
+2025-08-16 08:32:41 - ✓ Base case verified: /workspace/cavity-flow-case
+2025-08-16 08:32:41 - Starting parametric study execution
+2025-08-16 08:32:41 - Testing Reynolds numbers: 100 200 500 1000
+2025-08-16 08:32:41 - === Processing Reynolds number: 100 ===
+2025-08-16 08:32:41 - Removing existing case: /workspace/runs/cavity_Re_100
+2025-08-16 08:32:41 - Copying base case to /workspace/runs/cavity_Re_100
+2025-08-16 08:32:41 - Working in: /workspace/runs/cavity_Re_100
+2025-08-16 08:32:41 - Case contents:
+2025-08-16 08:32:41 - Setting Reynolds number to 100
+2025-08-16 08:32:41 - DEBUG: transportProperties nu content:
+2025-08-16 08:32:41 - Setting Reynolds number to 100
+2025-08-16 08:32:41 - Calculated kinematic viscosity: .01000000
+2025-08-16 08:32:41 - Setting Reynolds number to 100
+2025-08-16 08:32:41 - Calculated kinematic viscosity: .0100000000
+2025-08-16 08:32:41 - Transport properties file content:
+2025-08-16 08:32:41 - Starting blockMesh for Re=100
+2025-08-16 08:32:42 - ✓ blockMesh completed successfully
+2025-08-16 08:32:42 - Running icoFoam solver for Re=100
+2025-08-16 08:32:42 - ✓ icoFoam completed in 1 seconds
+2025-08-16 08:32:42 - SUCCESS: Valid results for Re=100, final time=0.5
+2025-08-16 08:32:42 - ✓ Case Re=100 completed successfully
+2025-08-16 08:32:42 - Recorded: Re=100, Status=SUCCESS
+2025-08-16 08:32:42 - === Completed Re=100 ===
+2025-08-16 08:32:42 - === Processing Reynolds number: 200 ===
+2025-08-16 08:32:42 - Removing existing case: /workspace/runs/cavity_Re_200
+2025-08-16 08:32:42 - Copying base case to /workspace/runs/cavity_Re_200
+2025-08-16 08:32:42 - Working in: /workspace/runs/cavity_Re_200
+2025-08-16 08:32:42 - Case contents:
+2025-08-16 08:32:42 - Setting Reynolds number to 200
+2025-08-16 08:32:42 - DEBUG: transportProperties nu content:
+2025-08-16 08:32:42 - Setting Reynolds number to 200
+2025-08-16 08:32:42 - Calculated kinematic viscosity: .00500000
+2025-08-16 08:32:42 - Setting Reynolds number to 200
+2025-08-16 08:32:42 - Calculated kinematic viscosity: .0050000000
+2025-08-16 08:32:42 - Transport properties file content:
+2025-08-16 08:32:42 - Starting blockMesh for Re=200
+2025-08-16 08:32:42 - ✓ blockMesh completed successfully
+2025-08-16 08:32:42 - Running icoFoam solver for Re=200
+2025-08-16 08:32:42 - ✓ icoFoam completed in 0 seconds
+2025-08-16 08:32:42 - SUCCESS: Valid results for Re=200, final time=0.5
+2025-08-16 08:32:42 - ✓ Case Re=200 completed successfully
+2025-08-16 08:32:42 - Recorded: Re=200, Status=SUCCESS
+2025-08-16 08:32:42 - === Completed Re=200 ===
+2025-08-16 08:32:42 - === Processing Reynolds number: 500 ===
+2025-08-16 08:32:42 - Removing existing case: /workspace/runs/cavity_Re_500
+2025-08-16 08:32:42 - Copying base case to /workspace/runs/cavity_Re_500
+2025-08-16 08:32:42 - Working in: /workspace/runs/cavity_Re_500
+2025-08-16 08:32:42 - Case contents:
+2025-08-16 08:32:42 - Setting Reynolds number to 500
+2025-08-16 08:32:42 - DEBUG: transportProperties nu content:
+2025-08-16 08:32:42 - Setting Reynolds number to 500
+2025-08-16 08:32:42 - Calculated kinematic viscosity: .00200000
+2025-08-16 08:32:42 - Setting Reynolds number to 500
+2025-08-16 08:32:42 - Calculated kinematic viscosity: .0020000000
+2025-08-16 08:32:42 - Transport properties file content:
+2025-08-16 08:32:42 - Starting blockMesh for Re=500
+2025-08-16 08:32:42 - ✓ blockMesh completed successfully
+2025-08-16 08:32:42 - Running icoFoam solver for Re=500
+2025-08-16 08:32:42 - ✓ icoFoam completed in 0 seconds
+2025-08-16 08:32:42 - SUCCESS: Valid results for Re=500, final time=0.5
+2025-08-16 08:32:42 - ✓ Case Re=500 completed successfully
+2025-08-16 08:32:42 - Recorded: Re=500, Status=SUCCESS
+2025-08-16 08:32:42 - === Completed Re=500 ===
+2025-08-16 08:32:42 - === Processing Reynolds number: 1000 ===
+2025-08-16 08:32:42 - Removing existing case: /workspace/runs/cavity_Re_1000
+2025-08-16 08:32:42 - Copying base case to /workspace/runs/cavity_Re_1000
+2025-08-16 08:32:42 - Working in: /workspace/runs/cavity_Re_1000
+2025-08-16 08:32:42 - Case contents:
+2025-08-16 08:32:42 - Setting Reynolds number to 1000
+2025-08-16 08:32:42 - DEBUG: transportProperties nu content:
+2025-08-16 08:32:42 - Setting Reynolds number to 1000
+2025-08-16 08:32:42 - Calculated kinematic viscosity: .00100000
+2025-08-16 08:32:42 - Setting Reynolds number to 1000
+2025-08-16 08:32:42 - Calculated kinematic viscosity: .0010000000
+2025-08-16 08:32:42 - Transport properties file content:
+2025-08-16 08:32:42 - Starting blockMesh for Re=1000
+2025-08-16 08:32:42 - ✓ blockMesh completed successfully
+2025-08-16 08:32:42 - Running icoFoam solver for Re=1000
+2025-08-16 08:32:42 - ✓ icoFoam completed in 0 seconds
+2025-08-16 08:32:42 - SUCCESS: Valid results for Re=1000, final time=0.5
+2025-08-16 08:32:42 - ✓ Case Re=1000 completed successfully
+2025-08-16 08:32:42 - Recorded: Re=1000, Status=SUCCESS
+2025-08-16 08:32:42 - === Completed Re=1000 ===
+2025-08-16 08:32:42 - === PARAMETRIC STUDY COMPLETED ===
+2025-08-16 08:32:42 - Total cases: 4
+2025-08-16 08:32:42 - Successful cases: 4
+2025-08-16 08:32:42 - Success rate: 100.0%
+2025-08-16 08:32:42 - Results summary:
+2025-08-16 08:32:42 - Case directories created:
+2025-08-16 08:32:42 - Detailed log: /workspace/runs/parametric-study.log
+2025-08-16 08:32:42 - === STUDY FINISHED SUCCESSFULLY ===
+2025-08-16 08:36:18 - Starting OpenFOAM parametric study
+2025-08-16 08:36:18 - Workspace: /workspace
+2025-08-16 08:36:18 - Base case: /workspace/cavity-flow-case
+2025-08-16 08:36:18 - ✓ Base case verified: /workspace/cavity-flow-case
+2025-08-16 08:36:18 - Starting parametric study execution
+2025-08-16 08:36:18 - Testing Reynolds numbers: 100 200 500 1000
+2025-08-16 08:36:18 - === Processing Reynolds number: 100 ===
+2025-08-16 08:36:18 - Removing existing case: /workspace/runs/cavity_Re_100
+2025-08-16 08:36:18 - Copying base case to /workspace/runs/cavity_Re_100
+2025-08-16 08:36:18 - Working in: /workspace/runs/cavity_Re_100
+2025-08-16 08:36:18 - Case contents:
+2025-08-16 08:36:18 - Setting Reynolds number to 100
+2025-08-16 08:36:18 - DEBUG: transportProperties nu content:
+2025-08-16 08:36:18 - Setting Reynolds number to 100
+2025-08-16 08:36:18 - Calculated kinematic viscosity: .01000000
+2025-08-16 08:36:18 - Setting Reynolds number to 100
+2025-08-16 08:36:18 - Calculated kinematic viscosity: .0100000000
+2025-08-16 08:36:18 - Transport properties file content:
+2025-08-16 08:36:18 - Starting blockMesh for Re=100
+2025-08-16 08:36:18 - ✓ blockMesh completed successfully
+2025-08-16 08:36:18 - Running icoFoam solver for Re=100
+2025-08-16 08:36:19 - ✓ icoFoam completed in 0 seconds
+2025-08-16 08:36:19 - SUCCESS: Valid results for Re=100, final time=0.5
+2025-08-16 08:36:19 - ✓ Case Re=100 completed successfully
+2025-08-16 08:36:19 - Recorded: Re=100, Status=SUCCESS
+2025-08-16 08:36:19 - === Completed Re=100 ===
+2025-08-16 08:36:19 - === Processing Reynolds number: 200 ===
+2025-08-16 08:36:19 - Removing existing case: /workspace/runs/cavity_Re_200
+2025-08-16 08:36:19 - Copying base case to /workspace/runs/cavity_Re_200
+2025-08-16 08:36:19 - Working in: /workspace/runs/cavity_Re_200
+2025-08-16 08:36:19 - Case contents:
+2025-08-16 08:36:19 - Setting Reynolds number to 200
+2025-08-16 08:36:19 - DEBUG: transportProperties nu content:
+2025-08-16 08:36:19 - Setting Reynolds number to 200
+2025-08-16 08:36:19 - Calculated kinematic viscosity: .00500000
+2025-08-16 08:36:19 - Setting Reynolds number to 200
+2025-08-16 08:36:19 - Calculated kinematic viscosity: .0050000000
+2025-08-16 08:36:19 - Transport properties file content:
+2025-08-16 08:36:19 - Starting blockMesh for Re=200
+2025-08-16 08:36:19 - ✓ blockMesh completed successfully
+2025-08-16 08:36:19 - Running icoFoam solver for Re=200
+2025-08-16 08:36:19 - ✓ icoFoam completed in 0 seconds
+2025-08-16 08:36:19 - SUCCESS: Valid results for Re=200, final time=0.5
+2025-08-16 08:36:19 - ✓ Case Re=200 completed successfully
+2025-08-16 08:36:19 - Recorded: Re=200, Status=SUCCESS
+2025-08-16 08:36:19 - === Completed Re=200 ===
+2025-08-16 08:36:19 - === Processing Reynolds number: 500 ===
+2025-08-16 08:36:19 - Removing existing case: /workspace/runs/cavity_Re_500
+2025-08-16 08:36:19 - Copying base case to /workspace/runs/cavity_Re_500
+2025-08-16 08:36:19 - Working in: /workspace/runs/cavity_Re_500
+2025-08-16 08:36:19 - Case contents:
+2025-08-16 08:36:19 - Setting Reynolds number to 500
+2025-08-16 08:36:19 - DEBUG: transportProperties nu content:
+2025-08-16 08:36:19 - Setting Reynolds number to 500
+2025-08-16 08:36:19 - Calculated kinematic viscosity: .00200000
+2025-08-16 08:36:19 - Setting Reynolds number to 500
+2025-08-16 08:36:19 - Calculated kinematic viscosity: .0020000000
+2025-08-16 08:36:19 - Transport properties file content:
+2025-08-16 08:36:19 - Starting blockMesh for Re=500
+2025-08-16 08:36:19 - ✓ blockMesh completed successfully
+2025-08-16 08:36:19 - Running icoFoam solver for Re=500
+2025-08-16 08:36:19 - ✓ icoFoam completed in 0 seconds
+2025-08-16 08:36:19 - SUCCESS: Valid results for Re=500, final time=0.5
+2025-08-16 08:36:19 - ✓ Case Re=500 completed successfully
+2025-08-16 08:36:19 - Recorded: Re=500, Status=SUCCESS
+2025-08-16 08:36:19 - === Completed Re=500 ===
+2025-08-16 08:36:19 - === Processing Reynolds number: 1000 ===
+2025-08-16 08:36:19 - Removing existing case: /workspace/runs/cavity_Re_1000
+2025-08-16 08:36:19 - Copying base case to /workspace/runs/cavity_Re_1000
+2025-08-16 08:36:19 - Working in: /workspace/runs/cavity_Re_1000
+2025-08-16 08:36:19 - Case contents:
+2025-08-16 08:36:19 - Setting Reynolds number to 1000
+2025-08-16 08:36:19 - DEBUG: transportProperties nu content:
+2025-08-16 08:36:19 - Setting Reynolds number to 1000
+2025-08-16 08:36:19 - Calculated kinematic viscosity: .00100000
+2025-08-16 08:36:19 - Setting Reynolds number to 1000
+2025-08-16 08:36:19 - Calculated kinematic viscosity: .0010000000
+2025-08-16 08:36:19 - Transport properties file content:
+2025-08-16 08:36:19 - Starting blockMesh for Re=1000
+2025-08-16 08:36:19 - ✓ blockMesh completed successfully
+2025-08-16 08:36:19 - Running icoFoam solver for Re=1000
+2025-08-16 08:36:19 - ✓ icoFoam completed in 0 seconds
+2025-08-16 08:36:19 - SUCCESS: Valid results for Re=1000, final time=0.5
+2025-08-16 08:36:19 - ✓ Case Re=1000 completed successfully
+2025-08-16 08:36:19 - Recorded: Re=1000, Status=SUCCESS
+2025-08-16 08:36:19 - === Completed Re=1000 ===
+2025-08-16 08:36:19 - === PARAMETRIC STUDY COMPLETED ===
+2025-08-16 08:36:19 - Total cases: 4
+2025-08-16 08:36:19 - Successful cases: 4
+2025-08-16 08:36:19 - Success rate: 100.0%
+2025-08-16 08:36:19 - Results summary:
+2025-08-16 08:36:19 - Case directories created:
+2025-08-16 08:36:19 - Detailed log: /workspace/runs/parametric-study.log
+2025-08-16 08:36:19 - === STUDY FINISHED SUCCESSFULLY ===
+2025-08-16 08:37:04 - Starting OpenFOAM parametric study
+2025-08-16 08:37:04 - Workspace: /workspace
+2025-08-16 08:37:04 - Base case: /workspace/cavity-flow-case
+2025-08-16 08:37:04 - ✓ Base case verified: /workspace/cavity-flow-case
+2025-08-16 08:37:04 - Starting parametric study execution
+2025-08-16 08:37:04 - Testing Reynolds numbers: 100 200 500 1000
+2025-08-16 08:37:04 - === Processing Reynolds number: 100 ===
+2025-08-16 08:37:04 - Removing existing case: /workspace/runs/cavity_Re_100
+2025-08-16 08:37:04 - Copying base case to /workspace/runs/cavity_Re_100
+2025-08-16 08:37:04 - Working in: /workspace/runs/cavity_Re_100
+2025-08-16 08:37:04 - Case contents:
+2025-08-16 08:37:04 - Setting Reynolds number to 100
+2025-08-16 08:37:04 - DEBUG: transportProperties nu content:
+2025-08-16 08:37:04 - Setting Reynolds number to 100
+2025-08-16 08:37:04 - Calculated kinematic viscosity: .01000000
+2025-08-16 08:37:04 - Setting Reynolds number to 100
+2025-08-16 08:37:04 - Calculated kinematic viscosity: .0100000000
+2025-08-16 08:37:04 - Transport properties file content:
+2025-08-16 08:37:04 - Starting blockMesh for Re=100
+2025-08-16 08:37:04 - ✓ blockMesh completed successfully
+2025-08-16 08:37:04 - Running icoFoam solver for Re=100
+2025-08-16 08:37:04 - ✓ icoFoam completed in 0 seconds
+2025-08-16 08:37:04 - SUCCESS: Valid results for Re=100, final time=0.5
+2025-08-16 08:37:04 - ✓ Case Re=100 completed successfully
+2025-08-16 08:37:04 - Recorded: Re=100, Status=SUCCESS
+2025-08-16 08:37:04 - === Completed Re=100 ===
+2025-08-16 08:37:04 - === Processing Reynolds number: 200 ===
+2025-08-16 08:37:04 - Removing existing case: /workspace/runs/cavity_Re_200
+2025-08-16 08:37:04 - Copying base case to /workspace/runs/cavity_Re_200
+2025-08-16 08:37:04 - Working in: /workspace/runs/cavity_Re_200
+2025-08-16 08:37:04 - Case contents:
+2025-08-16 08:37:04 - Setting Reynolds number to 200
+2025-08-16 08:37:04 - DEBUG: transportProperties nu content:
+2025-08-16 08:37:04 - Setting Reynolds number to 200
+2025-08-16 08:37:04 - Calculated kinematic viscosity: .00500000
+2025-08-16 08:37:04 - Setting Reynolds number to 200
+2025-08-16 08:37:04 - Calculated kinematic viscosity: .0050000000
+2025-08-16 08:37:04 - Transport properties file content:
+2025-08-16 08:37:04 - Starting blockMesh for Re=200
+2025-08-16 08:37:04 - ✓ blockMesh completed successfully
+2025-08-16 08:37:04 - Running icoFoam solver for Re=200
+2025-08-16 08:37:04 - ✓ icoFoam completed in 0 seconds
+2025-08-16 08:37:04 - SUCCESS: Valid results for Re=200, final time=0.5
+2025-08-16 08:37:04 - ✓ Case Re=200 completed successfully
+2025-08-16 08:37:04 - Recorded: Re=200, Status=SUCCESS
+2025-08-16 08:37:04 - === Completed Re=200 ===
+2025-08-16 08:37:04 - === Processing Reynolds number: 500 ===
+2025-08-16 08:37:04 - Removing existing case: /workspace/runs/cavity_Re_500
+2025-08-16 08:37:04 - Copying base case to /workspace/runs/cavity_Re_500
+2025-08-16 08:37:04 - Working in: /workspace/runs/cavity_Re_500
+2025-08-16 08:37:04 - Case contents:
+2025-08-16 08:37:04 - Setting Reynolds number to 500
+2025-08-16 08:37:04 - DEBUG: transportProperties nu content:
+2025-08-16 08:37:04 - Setting Reynolds number to 500
+2025-08-16 08:37:04 - Calculated kinematic viscosity: .00200000
+2025-08-16 08:37:04 - Setting Reynolds number to 500
+2025-08-16 08:37:05 - Calculated kinematic viscosity: .0020000000
+2025-08-16 08:37:05 - Transport properties file content:
+2025-08-16 08:37:05 - Starting blockMesh for Re=500
+2025-08-16 08:37:05 - ✓ blockMesh completed successfully
+2025-08-16 08:37:05 - Running icoFoam solver for Re=500
+2025-08-16 08:37:05 - ✓ icoFoam completed in 0 seconds
+2025-08-16 08:37:05 - SUCCESS: Valid results for Re=500, final time=0.5
+2025-08-16 08:37:05 - ✓ Case Re=500 completed successfully
+2025-08-16 08:37:05 - Recorded: Re=500, Status=SUCCESS
+2025-08-16 08:37:05 - === Completed Re=500 ===
+2025-08-16 08:37:05 - === Processing Reynolds number: 1000 ===
+2025-08-16 08:37:05 - Removing existing case: /workspace/runs/cavity_Re_1000
+2025-08-16 08:37:05 - Copying base case to /workspace/runs/cavity_Re_1000
+2025-08-16 08:37:05 - Working in: /workspace/runs/cavity_Re_1000
+2025-08-16 08:37:05 - Case contents:
+2025-08-16 08:37:05 - Setting Reynolds number to 1000
+2025-08-16 08:37:05 - DEBUG: transportProperties nu content:
+2025-08-16 08:37:05 - Setting Reynolds number to 1000
+2025-08-16 08:37:05 - Calculated kinematic viscosity: .00100000
+2025-08-16 08:37:05 - Setting Reynolds number to 1000
+2025-08-16 08:37:05 - Calculated kinematic viscosity: .0010000000
+2025-08-16 08:37:05 - Transport properties file content:
+2025-08-16 08:37:05 - Starting blockMesh for Re=1000
+2025-08-16 08:37:05 - ✓ blockMesh completed successfully
+2025-08-16 08:37:05 - Running icoFoam solver for Re=1000
+2025-08-16 08:37:05 - ✓ icoFoam completed in 0 seconds
+2025-08-16 08:37:05 - SUCCESS: Valid results for Re=1000, final time=0.5
+2025-08-16 08:37:05 - ✓ Case Re=1000 completed successfully
+2025-08-16 08:37:05 - Recorded: Re=1000, Status=SUCCESS
+2025-08-16 08:37:05 - === Completed Re=1000 ===
+2025-08-16 08:37:05 - === PARAMETRIC STUDY COMPLETED ===
+2025-08-16 08:37:05 - Total cases: 4
+2025-08-16 08:37:05 - Successful cases: 4
+2025-08-16 08:37:05 - Success rate: 100.0%
+2025-08-16 08:37:05 - Results summary:
+2025-08-16 08:37:05 - Case directories created:
+2025-08-16 08:37:05 - Detailed log: /workspace/runs/parametric-study.log
+2025-08-16 08:37:05 - === STUDY FINISHED SUCCESSFULLY ===

@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # OpenFOAM Parametric Study - Container Environment
-set -e  # Exit if any command fails
+#set -e  # Exit if any command fails
 echo "DEBUG: Script started"
-set -x  # trace execution
+set -x
 # ✅ Force workspace to /opt/simulation
 WORKSPACE="/opt/simulation"
 RESULTS_DIR="${WORKSPACE}/runs"
@@ -27,7 +27,11 @@ set +u  # Allow unbound variables for OpenFOAM sourcing
 #source /opt/openfoam9/etc/bashrc
 echo "Sourcing OpenFOAM..."
 ls -l /opt/openfoam9/etc/bashrc || echo "bashrc not found"
-source /opt/openfoam9/etc/bashrc || echo "Source command failed"echo "✓ OpenFOAM sourced"
+source /opt/openfoam9/etc/bashrc || echo "Source command failed"
+
+echo "✓ OpenFOAM sourced"
+which icoFoam
+echo "WM_PROJECT_VERSION=$WM_PROJECT_VERSION"
 set -u  # Re-enable after sourcing
 echo "✓ OpenFOAM $WM_PROJECT_VERSION loaded"
 
@@ -126,6 +130,7 @@ validate_results() {
     return 0
 }
 
+# Main parametric study function
 main() {
     log "Starting parametric study execution"
     
@@ -168,7 +173,8 @@ main() {
         
         # Update Reynolds number in transportProperties
         log "Setting Reynolds number to ${re}"
-        local nu_value=$(echo "scale=8; 1.0/${re}" | bc -l)
+        #local nu_value=$(echo "scale=8; 1.0/${re}" | bc -l)
+        local nu_value=$(echo "scale=10; 0.001/${re}" | bc -l)
         echo "Calculated kinematic viscosity: ${nu_value}"
         transport_file="constant/transportProperties"
         log "DEBUG: transportProperties nu content:"
