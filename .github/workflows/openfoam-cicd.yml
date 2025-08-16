@@ -113,7 +113,7 @@ jobs:
 
       - uses: aquasecurity/trivy-action@master
         with:
-          image-ref: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }} #${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+          image-ref: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
           format: 'sarif'
           output: 'trivy-results.sarif'
         continue-on-error: true
@@ -132,14 +132,12 @@ jobs:
     needs: build
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-python@v4
         with:
           python-version: '3.11'
           cache: 'pip'
 
       - run: |
-          pip install pytest pyyaml numpy matplotlib
           pip install -r requirements.txt || echo "No requirements.txt found"
 
       - run: |
