@@ -31,11 +31,13 @@ env:
   IMAGE_NAME: ${{ github.repository }}/openfoam-platform
   SIMULATION_TIMEOUT: 1800  # 30 minutes
 
+
 jobs:
   # ============================================================================
   # BUILD JOB
   # ============================================================================
   build:
+    
     name: Build OpenFOAM Container
     runs-on: ubuntu-latest
     outputs:
@@ -45,6 +47,11 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      
+      - name: Debug repo files
+        run: |
+          pwd
+          ls -R | head -50
 
       - uses: docker/setup-buildx-action@v3
         with:
