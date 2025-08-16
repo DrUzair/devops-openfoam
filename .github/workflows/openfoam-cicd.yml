@@ -216,12 +216,11 @@ jobs:
         timeout-minutes: ${{ matrix.test-case.timeout-minutes }}
         run: |
           docker run --rm \
-            -v $PWD/results/integration-tests/${{ matrix.test-case.name }}:/results \
+            -v "$PWD/results/integration-tests/${{ matrix.test-case.name }}:/results"
             -e REYNOLDS_NUMBERS="${{ matrix.test-case.reynolds }}" \
             -e MAX_ITERATIONS="${{ matrix.test-case.iterations }}" \
             -e PARALLEL_JOBS="2" \
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }} \
-            bash -c "
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }} bash -c "
               cd /simulation-case
               export RESULTS_DIR=/results
               /scripts/run-parametric-study.sh
