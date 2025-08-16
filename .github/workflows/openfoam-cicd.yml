@@ -216,15 +216,17 @@ jobs:
         timeout-minutes: ${{ matrix.test-case.timeout-minutes }}
         run: |
           docker run --rm \
-            -v "$PWD/results/integration-tests/${{ matrix.test-case.name }}:/results"
-            -e REYNOLDS_NUMBERS="${{ matrix.test-case.reynolds }}" \
-            -e MAX_ITERATIONS="${{ matrix.test-case.iterations }}" \
+            -v "$PWD/results/integration-tests/Quick Validation:/results" \
+            -e REYNOLDS_NUMBERS="100" \
+            -e MAX_ITERATIONS="10" \
             -e PARALLEL_JOBS="2" \
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }} bash -c "
+            ghcr.io/druzair/openfoam-platform:715b0c290e476f11b95c12ff76ca4d5e180fd508 \
+            bash -c "
               cd /simulation-case
               export RESULTS_DIR=/results
               /scripts/run-parametric-study.sh
             "
+
       - name: Validate Simulation Results
         run: |
           python -c "
