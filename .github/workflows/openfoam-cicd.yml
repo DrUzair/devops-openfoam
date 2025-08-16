@@ -52,7 +52,18 @@ jobs:
         run: |
           pwd
           ls -R | head -50
-
+      - name: Verify required folders exist
+        run: |
+          if [ ! -d "scripts" ]; then
+            echo "❌ ERROR: scripts/ directory is missing!"
+            exit 1
+          fi
+          if [ ! -d "simulations" ]; then
+            echo "❌ ERROR: simulations/ directory is missing!"
+            exit 1
+          fi
+          echo "✅ scripts/ and simulations/ directories found."
+          
       - uses: docker/setup-buildx-action@v3
         with:
           platforms: linux/amd64,linux/arm64
