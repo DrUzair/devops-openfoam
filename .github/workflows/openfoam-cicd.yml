@@ -2,7 +2,9 @@
 # Demonstrates: Pipeline as Code, Container Builds, Automated Testing, Artifact Management
 
 name: OpenFOAM Simulation Pipeline
-
+permissions:
+  contents: read
+  packages: write
 on:
   push:
     branches: [main, develop, feature/*]
