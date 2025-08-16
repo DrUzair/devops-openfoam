@@ -6,7 +6,7 @@ ENV REYNOLDS_NUMBER=100 \
     MESH_RESOLUTION=20 \
     SIMULATION_TIME=1000
 
-WORKDIR /opt/simulation
+WORKDIR /opt/ansys-openfoam-platform
 
 USER root
 
@@ -27,11 +27,11 @@ RUN mkdir -p /home/foamuser/platforms \
     && mkdir -p /opt/ThirdParty-9 \
     && chown -R foamuser:foamuser /opt/ThirdParty-9
 
-RUN mkdir -p /opt/simulation && \
-    chown -R foamuser:foamuser /opt/simulation
+RUN mkdir -p /opt/ansys-openfoam-platform && \
+    chown -R foamuser:foamuser /opt/ansys-openfoam-platform
     
 # Copy simulation cases and scripts
-COPY --chown=foamuser:foamuser ./simulations/ ./cases/
+COPY --chown=foamuser:foamuser ./simulations/ ./simulations/
 COPY --chown=foamuser:foamuser ./scripts/ ./scripts/
 
 # Make scripts executable
@@ -46,7 +46,7 @@ RUN echo "source /opt/openfoam9/etc/bashrc" >> /etc/bash.bashrc
 FROM base AS production
 
 USER foamuser
-WORKDIR /opt/simulation
+WORKDIR /opt/ansys-openfoam-platform
 
 # Default command (parametric study)
 CMD ["bash", "-lc", "./scripts/run-blockMesh.sh"]
