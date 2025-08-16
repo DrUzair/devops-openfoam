@@ -28,7 +28,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}/openfoam-platform
+  IMAGE_NAME: druzair/openfoam-platform #${{ github.repository }}/openfoam-platform
   SIMULATION_TIMEOUT: 1800  # 30 minutes
 
 
