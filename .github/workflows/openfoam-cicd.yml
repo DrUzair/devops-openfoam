@@ -213,26 +213,17 @@ jobs:
           chmod 777 results/integration-tests/${{ matrix.test-case.name }}
 
       - name: Run Parametric Study
-        timeout-minutes: ${{ matrix.test-case.timeout-minutes }}
-        shell: bash
-        run: |
-          docker run --rm \
-            --entrypoint /bin/bash \
-            -v "$PWD/results/integration-tests/${{ matrix.test-case.name }}:/results" \
-            -e REYNOLDS_NUMBERS="${{ matrix.test-case.reynolds }}" \
-            -e MAX_ITERATIONS="${{ matrix.test-case.iterations }}" \
-            -u root \
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }} \
-            bash -cx "
-              echo '=== STARTING SIMULATION ==='
-              echo 'Using Reynolds: ${{ matrix.test-case.reynolds }}'
-              echo 'Max iterations: ${{ matrix.test-case.iterations }}'
-              cd /simulation-case
-              export RESULTS_DIR=/results
-              /scripts/run-parametric-study.sh
-              echo '=== SIMULATION COMPLETE ==='
-              ls -lR /results
-            "
+  timeout-minutes: ${{ matrix.test-case.timeout-minutes }}
+  shell: bash
+  run: |
+    docker run --rm \
+      -v "$PWD/results/integration-tests/${{ matrix.test-case.name }}:/results" \
+      -e REYNOLDS_NUMBERS="${{ matrix.test-case.reynolds }}" \
+      -e MAX_ITERATIONS="${{ matrix.test-case.iterations }}" \
+      -u root \
+      ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }} \
+      /scripts/run-parametric-study.sh
+
 
       - name: Validate Output Files
         run: |
