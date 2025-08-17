@@ -208,6 +208,7 @@ jobs:
         shell: bash
         run: |
           docker run --rm \
+            --entrypoint /bin/bash \
             -v "$PWD/results/integration-tests/${{ matrix.test-case.name }}:/results" \
             -e REYNOLDS_NUMBERS="${{ matrix.test-case.reynolds }}" \
             -e MAX_ITERATIONS="${{ matrix.test-case.iterations }}" \
