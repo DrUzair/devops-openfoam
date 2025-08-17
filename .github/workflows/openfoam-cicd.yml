@@ -214,6 +214,7 @@ jobs:
 
       - name: Run Parametric Study
         timeout-minutes: ${{ matrix.test-case.timeout-minutes }}
+        shell: bash
         run: |
           docker run --rm \
             --entrypoint /bin/bash \
