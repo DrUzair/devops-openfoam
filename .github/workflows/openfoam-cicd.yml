@@ -226,10 +226,12 @@ jobs:
               export RESULTS_DIR=/results
               /scripts/run-parametric-study.sh
             "
-      - name: Debug output files
+      - name: Debug simulation output
         run: |
           echo "Contents of results dir:"
           ls -R results/integration-tests/Quick-Validation || true
+          echo "Checking for converged.log files:"
+          find results/integration-tests -name "converged.log" || echo "No converged.log files found"
       
       - name: Validate Simulation Results
         run: |
