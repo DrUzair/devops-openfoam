@@ -193,7 +193,7 @@ jobs:
             reynolds: "100"
             iterations: "10"
             timeout-minutes: 5
-          - name: "Standard Test"
+          - name: "Standard-Test"
             reynolds: "500,1000"
             iterations: "50"
             timeout-minutes: 15
@@ -226,7 +226,11 @@ jobs:
               export RESULTS_DIR=/results
               /scripts/run-parametric-study.sh
             "
-
+      - name: Debug output files
+        run: |
+          echo "Contents of results dir:"
+          ls -R results/integration-tests/Quick-Validation || true
+      
       - name: Validate Simulation Results
         run: |
           python -c "
