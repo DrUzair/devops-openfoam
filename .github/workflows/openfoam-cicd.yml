@@ -189,7 +189,7 @@ jobs:
     strategy:
       matrix:
         test-case:
-          - name: "Quick Validation"
+          - name: "Quick-Validation"
             reynolds: "100"
             iterations: "10"
             timeout-minutes: 5
@@ -216,7 +216,7 @@ jobs:
         timeout-minutes: ${{ matrix.test-case.timeout-minutes }}
         run: |
           docker run --rm \
-            -v "$PWD/results/integration-tests/Quick Validation:/results" \
+            -v "$PWD/results/integration-tests/Quick-Validation:/results" \
             -e REYNOLDS_NUMBERS="100" \
             -e MAX_ITERATIONS="10" \
             -e PARALLEL_JOBS="2" \
