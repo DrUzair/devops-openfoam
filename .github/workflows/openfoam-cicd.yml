@@ -216,29 +216,37 @@ jobs:
         timeout-minutes: ${{ matrix.test-case.timeout-minutes }}
         run: |
           docker run --rm \
-            -v "$PWD/results/integration-tests/Quick-Validation:/results" \
-            -e REYNOLDS_NUMBERS="100" \
-            -e MAX_ITERATIONS="10" \
-            -e PARALLEL_JOBS="2" \
-            ghcr.io/druzair/openfoam-platform:715b0c290e476f11b95c12ff76ca4d5e180fd508 \
-            bash -c "
+            --entrypoint /bin/bash \
+            -v "$PWD/results/integration-tests/${{ matrix.test-case.name }}:/results" \
+            -e REYNOLDS_NUMBERS="${{ matrix.test-case.reynolds }}" \
+            -e MAX_ITERATIONS="${{ matrix.test-case.iterations }}" \
+            -u root \
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }} \
+            bash -cx "
+              echo '=== STARTING SIMULATION ==='
+              echo 'Using Reynolds: ${{ matrix.test-case.reynolds }}'
+              echo 'Max iterations: ${{ matrix.test-case.iterations }}'
               cd /simulation-case
               export RESULTS_DIR=/results
               /scripts/run-parametric-study.sh
+              echo '=== SIMULATION COMPLETE ==='
+              ls -lR /results
             "
-      - name: Debug simulation output
+
+      - name: Validate Output Files
         run: |
-          echo "Contents of results dir:"
-          ls -R results/integration-tests/Quick-Validation || true
-          echo "Checking for converged.log files:"
-          find results/integration-tests -name "converged.log" || echo "No converged.log files found"
-      
+          echo "Contents of results directory:"
+          ls -lR results/integration-tests/${{ matrix.test-case.name }}
+          echo "Checking for required files:"
+          find results/integration-tests/${{ matrix.test-case.name }} -name "converged.log" -o -name "summary_report.json"
+
       - name: Validate Simulation Results
         run: |
           python -c "
           import os, sys, json, glob
           
           results_dir = 'results/integration-tests/${{ matrix.test-case.name }}'
+          print(f'Validating results in: {results_dir}')
           
           # Check for expected output files
           required_patterns = [
@@ -247,27 +255,39 @@ jobs:
               'summary_report.json'
           ]
           
+          missing_files = False
           for pattern in required_patterns:
               files = glob.glob(os.path.join(results_dir, pattern), recursive=True)
               if not files:
                   print(f'❌ Missing expected files: {pattern}')
-                  sys.exit(1)
+                  missing_files = True
               else:
                   print(f'✅ Found {len(files)} files matching: {pattern}')
+          
+          if missing_files:
+              sys.exit(1)
           
           # Validate summary report
           summary_path = os.path.join(results_dir, 'summary_report.json')
           if os.path.exists(summary_path):
-              with open(summary_path, 'r') as f:
-                  summary = json.load(f)
-              
-              reynolds_nums = [float(x) for x in '${{ matrix.test-case.reynolds }}'.split(',')]
-              
-              if len(summary.get('results', [])) != len(reynolds_nums):
-                  print(f'❌ Expected {len(reynolds_nums)} results, got {len(summary.get(\"results\", []))}')
+              try:
+                  with open(summary_path) as f:
+                      summary = json.load(f)
+                  expected_re = [float(x) for x in '${{ matrix.test-case.reynolds }}'.split(',')]
+                  actual_re = [r['Re'] for r in summary.get('results', [])]
+                  
+                  if set(expected_re) != set(actual_re):
+                      print(f'❌ Reynolds number mismatch. Expected: {expected_re}, Got: {actual_re}')
+                      sys.exit(1)
+                  print(f'✅ All expected Reynolds numbers present: {expected_re}')
+              except Exception as e:
+                  print(f'❌ Error processing summary report: {str(e)}')
                   sys.exit(1)
-              
-              print(f'✅ Integration test passed: ${{ matrix.test-case.name }}')
+          else:
+              print('❌ Missing summary report')
+              sys.exit(1)
+          
+          print(f'✅ Integration test passed: ${{ matrix.test-case.name }}')
           "
 
       - name: Upload Test Results
