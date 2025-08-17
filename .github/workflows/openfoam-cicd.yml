@@ -77,15 +77,6 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      # - id: meta
-      #   uses: docker/metadata-action@v5
-      #   with:
-      #     images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-      #     tags: |
-      #       type=ref,event=branch
-      #       type=ref,event=pr
-      #       type=sha,prefix={{branch}}-
-      #       type=raw,value=latest,enable={{is_default_branch}}
       - id: meta
         uses: docker/metadata-action@v5
         with:
@@ -217,13 +208,13 @@ jobs:
         shell: bash
         run: |
           docker run --rm \
-            --entrypoint /bin/bash \
             -v "$PWD/results/integration-tests/${{ matrix.test-case.name }}:/results" \
             -e REYNOLDS_NUMBERS="${{ matrix.test-case.reynolds }}" \
             -e MAX_ITERATIONS="${{ matrix.test-case.iterations }}" \
             -u root \
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }} \
-            /scripts/run-parametric-study.sh
+            ghcr.io/druzair/openfoam-platform:${{ github.sha }} \
+            bash -lc "./scripts/run-parametric-study.sh"
+
 
 
       - name: Validate Output Files
