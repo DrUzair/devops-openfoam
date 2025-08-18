@@ -265,7 +265,6 @@ jobs:
                   essentials = [
                       'log.blockMesh',
                       'log.icoFoam',
-                      'constant/polyMesh/blockMeshDict',
                       'system/controlDict'
                   ]
                   for ef in essentials:
@@ -297,12 +296,20 @@ jobs:
               try:
                   with open(summary_path) as f:
                       reader = csv.DictReader(f)
-                      re_values = [row.get('Re') for row in reader if 'Re' in row]
+                      re_values = [row.get('Reynolds') for row in reader if 'Reynolds' in row]
                   if not re_values:
-                      print('❌ summary.csv does not contain Re column')
+                      print('❌ summary.csv does not contain Reynolds column')
                       missing_files = True
                   else:
                       print(f'✅ Found Reynolds numbers in summary.csv: {re_values}')
+                      # Check that case directories match CSV
+                      expected_dirs = [f'cavity_Re_{r}' for r in re_values]
+                      missing_dirs = [d for d in expected_dirs if not os.path.isdir(os.path.join(results_dir, d))]
+                      if missing_dirs:
+                          print(f'❌ Case directories missing for CSV entries: {missing_dirs}')
+                          missing_files = True
+                      else:
+                          print(f'✅ All CSV Reynolds numbers have matching case directories')
               except Exception as e:
                   print(f'❌ Error reading summary.csv: {str(e)}')
                   missing_files = True
@@ -315,6 +322,7 @@ jobs:
 
           print(f'✅ Integration test passed: Quick-Validation')
           "
+
 
       - name: Upload Test Results
         uses: actions/upload-artifact@v4
