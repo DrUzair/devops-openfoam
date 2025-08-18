@@ -212,9 +212,8 @@ jobs:
             -v "$PWD/results/integration-tests/${{ matrix.test-case.name }}:/results" \
             -e REYNOLDS_NUMBERS="${{ matrix.test-case.reynolds }}" \
             -e MAX_ITERATIONS="${{ matrix.test-case.iterations }}" \
-            -u root \
             ghcr.io/druzair/openfoam-platform:${{ github.sha }} \
-            bash -lc "./scripts/run-parametric-study.sh"
+            -lc "./scripts/run-parametric-study.sh"
 
 
 
