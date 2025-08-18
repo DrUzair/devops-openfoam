@@ -51,7 +51,8 @@ else
     exit 1
 fi
 
-RESULTS_DIR="${WORKSPACE}/runs"
+# Always write results into mounted /results dir
+RESULTS_DIR="/results"
 LOG_FILE="${RESULTS_DIR}/parametric-study.log"
 
 echo "Detected workspace: ${WORKSPACE}"
