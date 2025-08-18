@@ -212,6 +212,7 @@ jobs:
         run: |
           docker run --rm \
             --entrypoint /bin/bash \
+            -u $(id -u):$(id -g) \   # Run as the same user
             -v "$PWD:/opt/simulation" \
             -v "$PWD/results/integration-tests/${{ matrix.test-case.name }}:/results" \
             -e REYNOLDS_NUMBERS="${{ matrix.test-case.reynolds }}" \
