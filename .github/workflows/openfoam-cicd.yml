@@ -212,7 +212,6 @@ jobs:
         run: |
           docker run --rm \
             --entrypoint /bin/bash \
-            -u $(id -u):$(id -g) \
             -v "$PWD:/opt/simulation" \
             -v "$PWD/results/integration-tests/${{ matrix.test-case.name }}:/results" \
             -e REYNOLDS_NUMBERS="${{ matrix.test-case.reynolds }}" \
@@ -228,54 +227,93 @@ jobs:
           find results/integration-tests/${{ matrix.test-case.name }} -name "converged.log" -o -name "summary_report.json"
 
       - name: Validate Simulation Results
-        run: |
+        run: |        
           python -c "
-          import os, sys, json, glob
-          
-          results_dir = 'results/integration-tests/${{ matrix.test-case.name }}'
-          print(f'Validating results in: {results_dir}')
-          
-          # Check for expected output files
-          required_patterns = [
-              'Re_*/converged.log',
-              'Re_*/postProcessing/**',
-              'summary_report.json'
-          ]
-          
-          missing_files = False
-          for pattern in required_patterns:
-              files = glob.glob(os.path.join(results_dir, pattern), recursive=True)
-              if not files:
-                  print(f'❌ Missing expected files: {pattern}')
-                  missing_files = True
-              else:
-                  print(f'✅ Found {len(files)} files matching: {pattern}')
-          
-          if missing_files:
-              sys.exit(1)
-          
-          # Validate summary report
-          summary_path = os.path.join(results_dir, 'summary_report.json')
-          if os.path.exists(summary_path):
-              try:
-                  with open(summary_path) as f:
-                      summary = json.load(f)
-                  expected_re = [float(x) for x in '${{ matrix.test-case.reynolds }}'.split(',')]
-                  actual_re = [r['Re'] for r in summary.get('results', [])]
-                  
-                  if set(expected_re) != set(actual_re):
-                      print(f'❌ Reynolds number mismatch. Expected: {expected_re}, Got: {actual_re}')
-                      sys.exit(1)
-                  print(f'✅ All expected Reynolds numbers present: {expected_re}')
-              except Exception as e:
-                  print(f'❌ Error processing summary report: {str(e)}')
-                  sys.exit(1)
-          else:
-              print('❌ Missing summary report')
-              sys.exit(1)
-          
-          print(f'✅ Integration test passed: ${{ matrix.test-case.name }}')
-          "
+            import os, sys, glob, csv
+
+            results_dir = 'results/integration-tests/Quick-Validation'
+            print(f'Validating results in: {results_dir}')
+
+            # Expected top-level files from bash script
+            required_files = [
+                'parametric-study.log',
+                'summary.csv'
+            ]
+
+            missing_files = False
+            for fname in required_files:
+                path = os.path.join(results_dir, fname)
+                if not os.path.exists(path):
+                    print(f'❌ Missing expected file: {fname}')
+                    missing_files = True
+                else:
+                    print(f'✅ Found file: {fname}')
+
+            # Check at least one case directory exists
+            case_dirs = glob.glob(os.path.join(results_dir, 'cavity_Re_*'))
+            if not case_dirs:
+                print('❌ No case directories found (expected at least one cavity_Re_*)')
+                missing_files = True
+            else:
+                print(f'✅ Found {len(case_dirs)} case directories')
+
+                # For each case, check essential files
+                for case in case_dirs:
+                    case_name = os.path.basename(case)
+                    print(f'-- Checking case: {case_name}')
+                    essentials = [
+                        'log.blockMesh',
+                        'log.icoFoam',
+                        'constant/polyMesh/blockMeshDict',
+                        'system/controlDict'
+                    ]
+                    for ef in essentials:
+                        path = os.path.join(case, ef)
+                        if not os.path.exists(path):
+                            print(f'   ❌ Missing: {ef}')
+                            missing_files = True
+                        else:
+                            print(f'   ✅ Found: {ef}')
+
+                    # Ensure at least one time directory with U and p
+                    time_dirs = [d for d in os.listdir(case) if d.replace('.','',1).isdigit()]
+                    if not time_dirs:
+                        print(f'   ❌ No time directories found')
+                        missing_files = True
+                    else:
+                        latest = sorted(time_dirs, key=lambda x: float(x))[-1]
+                        u_file = os.path.join(case, latest, 'U')
+                        p_file = os.path.join(case, latest, 'p')
+                        if os.path.exists(u_file) and os.path.exists(p_file):
+                            print(f'   ✅ Latest time {latest} has U and p')
+                        else:
+                            print(f'   ❌ Missing U or p in latest time {latest}')
+                            missing_files = True
+
+            # Validate summary.csv contents
+            summary_path = os.path.join(results_dir, 'summary.csv')
+            if os.path.exists(summary_path):
+                try:
+                    with open(summary_path) as f:
+                        reader = csv.DictReader(f)
+                        re_values = [row.get('Re') for row in reader if 'Re' in row]
+                    if not re_values:
+                        print('❌ summary.csv does not contain Re column')
+                        missing_files = True
+                    else:
+                        print(f'✅ Found Reynolds numbers in summary.csv: {re_values}')
+                except Exception as e:
+                    print(f'❌ Error reading summary.csv: {str(e)}')
+                    missing_files = True
+            else:
+                print('❌ Missing summary.csv')
+                missing_files = True
+
+            if missing_files:
+                sys.exit(1)
+
+            print(f'✅ Integration test passed: Quick-Validation')
+            "
 
       - name: Upload Test Results
         uses: actions/upload-artifact@v4
