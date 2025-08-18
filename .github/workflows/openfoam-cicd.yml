@@ -38,19 +38,21 @@ env:
 jobs:
   # ============================================================================
   # BUILD JOB
+  #    GitHub Runner VM (Ubuntu host)
+  #    └── Docker (installed inside runner)
+  #         └── Build container image (OpenFOAM)
+  #         └── Push image to GHCR registry
   # ============================================================================
-  build:
-    
+  build:    # The GitHub Actions runner VM
     name: Build OpenFOAM Container
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # GitHub spins up a fresh virtual machine (Ubuntu Linux) for this job.
     outputs:
       image-digest: ${{ steps.build.outputs.digest }}
       image-tag: ${{ steps.meta.outputs.tags }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4 # clone the github repository into the runner VM filesystem
         with:
-          fetch-depth: 0
-      
+          fetch-depth: 0      
       - name: Debug repo files
         run: |
           pwd
@@ -67,9 +69,9 @@ jobs:
           fi
           echo "✅ scripts/ and simulations/ directories found."
 
-      - uses: docker/setup-buildx-action@v3
+      - uses: docker/setup-buildx-action@v3 # this installs Docker Buildx in the runner VM
         with:
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64 #,linux/arm64
 
       - uses: docker/login-action@v3
         with:
@@ -88,7 +90,7 @@ jobs:
             type=raw,value=latest,enable={{is_default_branch}}
       
       - id: build
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v5 # builds OpenFOAM container image, using the containers/openfoam/Dockerfile
         with:
           context: .
           file: ./containers/openfoam/Dockerfile
@@ -102,7 +104,7 @@ jobs:
             BUILD_DATE=${{ github.event.head_commit.timestamp }}
             BUILD_VERSION=${{ github.sha }}
 
-      - uses: aquasecurity/trivy-action@master
+      - uses: aquasecurity/trivy-action@master # scan built image for vulnerabilities.
         with:
           image-ref: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
           format: 'sarif'
@@ -171,6 +173,7 @@ jobs:
 
   # ============================================================================
   # INTEGRATION TESTS
+  # Each job runs in a fresh VM runner. So checkout and login again.
   # ============================================================================
   integration-tests:
     name: Integration Tests - Simulation Pipeline
@@ -209,13 +212,12 @@ jobs:
         run: |
           docker run --rm \
             --entrypoint /bin/bash \
+            -v "$PWD:/opt/simulation" \
             -v "$PWD/results/integration-tests/${{ matrix.test-case.name }}:/results" \
             -e REYNOLDS_NUMBERS="${{ matrix.test-case.reynolds }}" \
             -e MAX_ITERATIONS="${{ matrix.test-case.iterations }}" \
             ghcr.io/druzair/openfoam-platform:${{ github.sha }} \
             -lc "./scripts/run-parametric-study.sh"
-
-
 
       - name: Validate Output Files
         run: |
