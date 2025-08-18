@@ -6,12 +6,10 @@ echo "DEBUG: Script started"
 set -x  # trace execution
 # ✅ Force workspace to /opt/simulation
 WORKSPACE="/opt/simulation"
-RESULTS_DIR="${WORKSPACE}/runs"
+RESULTS_DIR="/results"
 LOG_FILE="${RESULTS_DIR}/parametric-study.log"
 
-# ✅ Always create results directory
-mkdir -p "${RESULTS_DIR}"
-echo "✓ Created results directory: ${RESULTS_DIR}"
+echo "✓ Using mounted results directory: ${RESULTS_DIR}"
 
 # ✅ Optional: Log the start time
 echo "Parametric study started at $(date)" > "${LOG_FILE}"
