@@ -225,14 +225,14 @@ jobs:
           echo "Contents of results directory:"
           ls -lR results/integration-tests/${{ matrix.test-case.name }}
           echo "Checking for required files:"
-          find results/integration-tests/${{ matrix.test-case.name }} -name "converged.log" -o -name "summary_report.json"
+          find results/integration-tests/${{ matrix.test-case.name }} -name "parametric-study.log" -o -name "summary.csv"
 
       - name: Validate Simulation Results
         run: |
           python -c "
           import os, sys, glob, csv
 
-          results_dir = 'results/integration-tests/Quick-Validation'
+          results_dir = 'results/integration-tests/Standard-Test'
           print(f'Validating results in: {results_dir}')
 
           # Expected top-level files from bash script
