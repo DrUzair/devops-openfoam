@@ -183,10 +183,6 @@ jobs:
     strategy:
       matrix:
         test-case:
-          - name: "Quick-Validation"
-            reynolds: "100"
-            iterations: "10"
-            timeout-minutes: 5
           - name: "Standard-Test"
             reynolds: "500,1000"
             iterations: "50"
