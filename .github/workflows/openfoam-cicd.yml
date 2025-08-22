@@ -434,7 +434,40 @@ jobs:
           # This would integrate with your cloud deployment tool
           # e.g., kubectl, helm, terraform, etc.
           echo "Deployment would happen here using IaC tools"
+      - name: Setup Kubernetes with kind
+        run: |
+          # Install kind
+          curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.20.0/kind-linux-amd64
+          chmod +x ./kind
+          sudo mv ./kind /usr/local/bin/kind
+          
+          # Create cluster
+          kind create cluster --name ci-cluster --wait 5m
+          
+          # Verify cluster is ready
+          kubectl get nodes
+          kubectl cluster-info
 
+      - name: Load Docker image into kind
+        run: |
+          # Load your OpenFOAM container into kind cluster
+          kind load docker-image ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }} --name ci-cluster
+
+      - name: Deploy OpenFOAM Job to Kubernetes
+        run: |
+          echo "🚀 Deploying OpenFOAM simulation to Kubernetes..."
+          
+          # Create and run Kubernetes Job
+          kubectl create job openfoam-sim-${{ github.run_number }} \
+            --image=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }} \
+            --dry-run=client -o yaml | \
+          kubectl apply -f -
+          
+          # Wait for completion (adjust timeout as needed)
+          kubectl wait --for=condition=complete --timeout=600s job/openfoam-sim-${{ github.run_number }}
+          
+          # Show results
+          kubectl logs job/openfoam-sim-${{ github.run_number }}
   # ============================================================================
   # PRODUCTION DEPLOYMENT - Deploy to production environment
   # ============================================================================
