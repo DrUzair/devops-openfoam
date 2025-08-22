@@ -450,6 +450,8 @@ jobs:
 
       - name: Load Docker image into kind
         run: |
+          # Pull the image from registry first
+          docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
           # Load your OpenFOAM container into kind cluster
           kind load docker-image ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }} --name ci-cluster
 
