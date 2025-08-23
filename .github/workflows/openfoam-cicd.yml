@@ -500,15 +500,30 @@ jobs:
             backoffLimit: 2
           EOF
           
-          # Wait for completion
-          kubectl wait --for=condition=complete --timeout=600s job/openfoam-sim-${{ github.run_number }}
+          # Wait for pod to start
+          echo "Waiting for pod to start..."
+          sleep 30
           
-          # Show simulation results
-          kubectl logs job/openfoam-sim-${{ github.run_number }}
+          # Get pod name
+          POD_NAME=$(kubectl get pods -l job-name=openfoam-sim-${{ github.run_number }} -o jsonpath='{.items[0].metadata.name}')
           
-          # Check job status
+          # Stream logs in background
+          kubectl logs -f $POD_NAME &
+          LOG_PID=$!
+          
+          # Wait for job completion with timeout
+          if kubectl wait --for=condition=complete --timeout=${SIMULATION_TIMEOUT}s job/openfoam-sim-${{ github.run_number }}; then
+            echo "✅ Simulation completed successfully"
+            kill $LOG_PID 2>/dev/null || true
+          else
+            echo "❌ Job failed or timed out"
+            kill $LOG_PID 2>/dev/null || true
+            kubectl describe job openfoam-sim-${{ github.run_number }}
+            exit 1
+          fi
+          
+          # Final status check
           kubectl get job openfoam-sim-${{ github.run_number }}
-  
   
   # ============================================================================
   # PRODUCTION DEPLOYMENT - Deploy to production environment
