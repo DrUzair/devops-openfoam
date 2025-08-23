@@ -497,6 +497,9 @@ jobs:
                         cpu: "2"
                         memory: "4Gi"               
                 restartPolicy: Never
+                volumeMounts:
+                - name: results-volume
+                  mountPath: /results
             backoffLimit: 2
           EOF
           
