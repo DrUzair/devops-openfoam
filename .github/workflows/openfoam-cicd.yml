@@ -484,12 +484,11 @@ jobs:
             template:
               spec:
                 containers:
-                - name: openfoam
-                  image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
-                  command: ["/bin/bash", "-c"]
-                  args: ["./scripts/run-parametric-study.sh"]
-                  workingDir: /app
-                  echo "Simulation completed!"
+                  - name: openfoam
+                    image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+                    command: ["/bin/bash", "-c"]
+                    args: ["./scripts/run-parametric-study.sh"]
+                    workingDir: /app                  
                 restartPolicy: Never
             backoffLimit: 2
           EOF
