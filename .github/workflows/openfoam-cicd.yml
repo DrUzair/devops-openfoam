@@ -488,7 +488,7 @@ jobs:
                     image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
                     command: ["/bin/bash", "-c"]
                     args: ["./scripts/run-parametric-study.sh"]
-                    workingDir: /app   
+                    workingDir: /opt/ansys-openfoam-platform
                     resources:
                       requests:
                         cpu: "1"  # Adjust based on your sim needs (OpenFOAM benefits from multi-core)

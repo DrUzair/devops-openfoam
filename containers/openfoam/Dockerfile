@@ -7,7 +7,6 @@ ENV REYNOLDS_NUMBER=100 \
     SIMULATION_TIME=1000
 
 WORKDIR /opt/ansys-openfoam-platform
-
 USER root
 
 # Install system dependencies
