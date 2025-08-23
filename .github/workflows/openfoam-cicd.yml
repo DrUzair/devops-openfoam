@@ -455,21 +455,58 @@ jobs:
           # Load your OpenFOAM container into kind cluster
           kind load docker-image ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }} --name ci-cluster
 
+      # - name: Deploy OpenFOAM Job to Kubernetes
+      #   run: |
+      #     echo "🚀 Deploying OpenFOAM simulation to Kubernetes..."
+          
+      #     # Create and run Kubernetes Job
+      #     kubectl create job openfoam-sim-${{ github.run_number }} \
+      #       --image=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }} \
+      #       --dry-run=client -o yaml | \
+      #     kubectl apply -f -
+          
+      #     # Wait for completion (adjust timeout as needed)
+      #     kubectl wait --for=condition=complete --timeout=600s job/openfoam-sim-${{ github.run_number }}
+          
+      #     # Show results
+      #     kubectl logs job/openfoam-sim-${{ github.run_number }}
       - name: Deploy OpenFOAM Job to Kubernetes
         run: |
           echo "🚀 Deploying OpenFOAM simulation to Kubernetes..."
           
-          # Create and run Kubernetes Job
-          kubectl create job openfoam-sim-${{ github.run_number }} \
-            --image=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }} \
-            --dry-run=client -o yaml | \
-          kubectl apply -f -
+          # Create Kubernetes Job with proper OpenFOAM command
+          cat << EOF | kubectl apply -f -
+          apiVersion: batch/v1
+          kind: Job
+          metadata:
+            name: openfoam-sim-${{ github.run_number }}
+          spec:
+            template:
+              spec:
+                containers:
+                - name: openfoam
+                  image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+                  command: ["/bin/bash", "-c"]
+                  args: 
+                  - |
+                    cd /app/cavity
+                    blockMesh
+                    foamRun
+                    echo "Simulation completed!"
+                restartPolicy: Never
+            backoffLimit: 2
+          EOF
           
-          # Wait for completion (adjust timeout as needed)
+          # Wait for completion
           kubectl wait --for=condition=complete --timeout=600s job/openfoam-sim-${{ github.run_number }}
           
-          # Show results
+          # Show simulation results
           kubectl logs job/openfoam-sim-${{ github.run_number }}
+          
+          # Check job status
+          kubectl get job openfoam-sim-${{ github.run_number }}
+  
+  
   # ============================================================================
   # PRODUCTION DEPLOYMENT - Deploy to production environment
   # ============================================================================
