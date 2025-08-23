@@ -488,7 +488,14 @@ jobs:
                     image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
                     command: ["/bin/bash", "-c"]
                     args: ["./scripts/run-parametric-study.sh"]
-                    workingDir: /app                  
+                    workingDir: /app   
+                    resources:
+                      requests:
+                        cpu: "1"  # Adjust based on your sim needs (OpenFOAM benefits from multi-core)
+                        memory: "2Gi"
+                      limits:
+                        cpu: "2"
+                        memory: "4Gi"               
                 restartPolicy: Never
             backoffLimit: 2
           EOF
